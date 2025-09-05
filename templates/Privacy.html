@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - ScribeSpark</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖋️</text></svg>">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        @keyframes move-background { from { background-position: 0% 50%; } to { background-position: 100% 50%; } }
+        body { font-family: 'Inter', sans-serif; background-color: #000000; color: #E5E7EB; overflow-x: hidden; }
+        .aurora-background { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at 10% 20%, rgba(138, 43, 226, 0.2), transparent 40%), radial-gradient(circle at 80% 90%, rgba(75, 0, 130, 0.2), transparent 40%); z-index: -2; }
+        .particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: url('https://www.transparenttextures.com/patterns/stardust.png'); animation: move-background 120s linear infinite; z-index: -1; }
+        .logo-font { font-family: 'Playfair Display', serif; }
+        .gradient-text { background: linear-gradient(to right, #A78BFA, #F472B6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .content-wrapper { position: relative; z-index: 10; }
+        .card { background-color: rgba(17, 24, 39, 0.6); backdrop-filter: blur(16px); border: 1px solid rgba(55, 65, 81, 0.5); }
+    </style>
+</head>
+<body>
+    <div class="aurora-background"></div>
+    <div class="particles"></div>
+    <div class="content-wrapper container mx-auto px-4 py-8 max-w-4xl min-h-screen flex flex-col">
+        <header class="flex justify-between items-center mb-16 md:mb-24">
+            <a href="/" class="flex items-center space-x-2 text-3xl font-bold logo-font text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 18.5a2.5 2.5 0 0 1-4 0"/><path d="m14 14-2.5 2.5a2.83 2.83 0 1 0 4 4L20 16"/><path d="M14 14l4-4"/><path d="M12 6c1.5 2 3 2 4 0"/><path d="M12 6c-1.5 2-3 2-4 0"/><path d="M4 14a2.83 2.83 0 1 0 4 4L12 14"/></svg>
+                <span>Scribe<span class="gradient-text">Spark</span></span>
+            </a>
+            <nav class="hidden md:flex space-x-6 text-gray-400 font-medium">
+                <a href="/#tool" class="hover:text-white transition-colors">Tool</a>
+                <a href="/#faq" class="hover:text-white transition-colors">FAQs</a>
+                <a href="/about" class="hover:text-white transition-colors">About Us</a>
+                <a href="/contact" class="hover:text-white transition-colors">Contact</a>
+            </nav>
+        </header>
+
+        <main class="card rounded-2xl p-8 md:p-12 shadow-2xl flex-grow">
+            <h1 class="text-4xl font-extrabold text-white mb-6">Privacy Policy</h1>
+            <div class="space-y-6 text-gray-300 text-lg">
+                <p><strong>Last updated: September 5, 2025</strong></p>
+                <p>We respect your privacy. The video topics and tones you enter are sent directly to the Gemini API for the sole purpose of generating hooks. We do not store, log, or share any of your inputs. Your creative process remains yours alone. We believe in maximum privacy for maximum creativity.</p>
+            </div>
+        </main>
+
+        <footer class="text-center border-t border-gray-800 pt-8 mt-16">
+            <p class="text-gray-600">&copy; 2025 ScribeSpark. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>
+
