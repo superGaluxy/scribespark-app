@@ -1,20 +1,30 @@
 # app.py
 
 import google.generativeai as genai
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, send_from_directory
 
 # Flask app ko initialize karte hain
 app = Flask(__name__)
 
 # ----------------- VERY IMPORTANT -----------------
 # Yahan par aapki API key honi chahiye
-API_KEY = 'AIzaSyBAQsdoLI9P14pKHfadFmPqd6YY3dgU6R8' # Please make sure your actual key is here
+API_KEY = 'PASTE_YOUR_API_KEY_HERE' # Please make sure your actual key is here
 
 # Gemini API ko configure karte hain
 genai.configure(api_key=API_KEY)
 
 # AI model ko select karte hain (Updated Model Name)
 model = genai.GenerativeModel('gemini-1.5-flash-latest')
+
+# --- Naya code jo Google ko sitemap aur robots.txt dega ---
+@app.route('/sitemap.xml')
+def sitemap():
+    return send_from_directory(app.static_folder, 'sitemap.xml')
+
+@app.route('/robots.txt')
+def robots():
+    return send_from_directory(app.static_folder, 'robots.txt')
+# ---------------------------------------------------------
 
 # Homepage ke liye route
 @app.route('/')
@@ -58,7 +68,7 @@ def generate_hooks():
         print(f"Error: {e}")
         return jsonify({'error': 'An error occurred. Please check your API key.'}), 500
 
-# Server ko run karte hain (Port 8080 par, to avoid conflicts)
+# Server ko run karte hain
 if __name__ == '__main__':
     app.run(debug=True, port=8080)
 
