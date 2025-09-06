@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 # ----------------- VERY IMPORTANT -----------------
 # Yahan par aapki API key honi chahiye
-API_KEY = 'PASTE_YOUR_API_KEY_HERE' # Please make sure your actual key is here
+API_KEY = 'AIzaSyBAQsdoLI9P14pKHfadFmPqd6YY3dgU6R8' # Please make sure your actual key is here
 
 # Gemini API ko configure karte hain
 genai.configure(api_key=API_KEY)
