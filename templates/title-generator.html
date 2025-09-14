@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Title Generator - ScribeSpark</title>
+    <meta name="description" content="Generate click-worthy and SEO-friendly titles for your YouTube videos for free with ScribeSpark's AI Title Generator.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖋️</text></svg>">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        @keyframes move-background { from { background-position: 0% 50%; } to { background-position: 100% 50%; } }
+        body { font-family: 'Inter', sans-serif; background-color: #000000; color: #E5E7EB; overflow-x: hidden; }
+        .aurora-background { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at 10% 20%, rgba(138, 43, 226, 0.2), transparent 40%), radial-gradient(circle at 80% 90%, rgba(75, 0, 130, 0.2), transparent 40%); z-index: -2; }
+        .particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: url('https://www.transparenttextures.com/patterns/stardust.png'); animation: move-background 120s linear infinite; z-index: -1; }
+        .logo-font { font-family: 'Playfair Display', serif; }
+        .gradient-text { background: linear-gradient(to right, #A78BFA, #F472B6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .content-wrapper { position: relative; z-index: 10; }
+        .card { background-color: rgba(17, 24, 39, 0.6); backdrop-filter: blur(16px); border: 1px solid rgba(55, 65, 81, 0.5); }
+        .animated-button { background-size: 200% auto; background-image: linear-gradient(to right, #8B5CF6 0%, #EC4899 51%, #8B5CF6 100%); transition: background-position 0.5s ease; }
+        .animated-button:hover { background-position: right center; }
+        .footer-link, .nav-link { transition: color 0.3s; }
+        .footer-link:hover, .nav-link:hover { color: #A78BFA; }
+        #toast { background-color: #8B5CF6; }
+        .hook-item { border-bottom-color: #374151; }
+        .ad-container { min-height: 100px; max-height: 280px; }
+    </style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DNEEC0P0Q1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-DNEEC0P0Q1');
+</script>
+</head>
+<body>
+    <div class="aurora-background"></div>
+    <div class="particles"></div>
+    <div id="toast" class="fixed bottom-[-100px] left-1/2 -translate-x-1/2 text-white py-2 px-5 rounded-lg transition-all duration-500 z-50">Copied to clipboard!</div>
+    
+    <div class="content-wrapper container mx-auto px-4 py-8 max-w-4xl min-h-screen flex flex-col">
+        <header class="flex justify-between items-center mb-16 md:mb-24">
+            <a href="/" class="flex items-center space-x-2 text-3xl font-bold logo-font text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-purple-400"><path d="M22 18.5a2.5 2.5 0 0 1-4 0"/><path d="m14 14-2.5 2.5a2.83 2.83 0 1 0 4 4L20 16"/><path d="M14 14l4-4"/><path d="M12 6c1.5 2 3 2 4 0"/><path d="M12 6c-1.5 2-3 2-4 0"/><path d="M4 14a2.83 2.83 0 1 0 4 4L12 14"/></svg>
+                <span>ScribeSpark</span>
+            </a>
+            <nav class="hidden md:flex space-x-6 text-gray-400 font-medium">
+                <a href="/" class="nav-link">Home</a>
+                <a href="/#faq" class="nav-link">FAQs</a>
+                <a href="/blog" class="nav-link">Blog</a>
+                <a href="/about" class="nav-link">About</a>
+                <a href="/contact" class="nav-link">Contact</a>
+            </nav>
+        </header>
+
+        <main class="flex-grow">
+            <section class="text-center mb-16">
+                 <h1 class="text-4xl md:text-6xl font-extrabold mb-4 text-white leading-tight">✍️ AI YouTube Title Generator</h1>
+                 <p class="text-lg text-gray-400 max-w-3xl mx-auto">Create click-worthy and SEO-friendly titles that rank higher and get more views.</p>
+            </section>
+            
+            <section class="card rounded-2xl p-6 md:p-8 shadow-2xl max-w-2xl mx-auto">
+                <div>
+                    <label for="video-topic-titles" class="block text-sm font-medium text-gray-300 mb-2 text-left">Your video topic:</label>
+                    <textarea id="video-topic-titles" rows="4" class="w-full bg-gray-900 border border-gray-700 rounded-lg p-3 text-gray-200 focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition duration-200 placeholder-gray-500" placeholder="e.g., How to master public speaking"></textarea>
+                </div>
+                <button id="generate-titles-btn" class="w-full mt-4 animated-button text-white font-semibold py-3 px-4 rounded-lg transition-all duration-300 flex items-center justify-center space-x-2 shadow-lg hover:shadow-purple-500/30">
+                    <span id="button-text-titles">Generate Titles</span>
+                </button>
+                <div class="mt-8 results-area bg-gray-900/50 border border-gray-700 rounded-lg p-6 min-h-[150px] flex items-center justify-center text-left">
+                    <div id="results-output" class="w-full text-gray-300"><p class="text-gray-500">Your AI-generated titles will appear here.</p></div>
+                </div>
+            </section>
+            
+            <section class="my-16 text-center">
+                <div class="ad-container max-w-3xl mx-auto flex justify-center items-center card rounded-2xl p-4">
+                    <script async="async" data-cfasync="false" src="//pl27581880.revenuecpmgate.com/052069ccfdb5325fcd1d06e361e10bee/invoke.js"></script>
+                    <div id="container-052069ccfdb5325fcd1d06e361e10bee"></div>
+                </div>
+            </section>
+
+        </main>
+
+        <footer class="text-center border-t border-gray-800 pt-8 mt-16">
+            <div class="flex justify-center space-x-6 mb-4 text-gray-400">
+                <a href="/about" class="footer-link">About Us</a>
+                <a href="/privacy" class="footer-link">Privacy Policy</a>
+                <a href="/contact" class="footer-link">Contact</a>
+            </div>
+            <p class="text-gray-600">&copy; 2025 ScribeSpark. Your Ultimate AI Creator Suite.</p>
+            <div class="mt-6">
+                <h4 class="text-lg font-semibold text-white mb-2">Our Other Projects</h4>
+                <div class="flex justify-center space-x-6 text-gray-400">
+                    <a href="https://toolify.66ghz.com" target="_blank" class="footer-link">Toolify</a>
+                    <a href="https://www.linkdart.online" target="_blank" class="footer-link">LinkDart</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script>
+        const generateBtn = document.getElementById('generate-titles-btn');
+        const buttonText = document.getElementById('button-text-titles');
+        const topicInput = document.getElementById('video-topic-titles');
+        const resultsOutput = document.getElementById('results-output');
+        const toast = document.getElementById('toast');
+        
+        generateBtn.addEventListener('click', async () => {
+            const topic = topicInput.value.trim();
+            if (!topic) { alert('Please enter a video topic!'); return; }
+            generateBtn.disabled = true;
+            buttonText.innerText = 'Generating...';
+            resultsOutput.innerHTML = '<div class="flex items-center justify-center h-full text-gray-500"><div class="spinner border-gray-700 border-t-purple-400 w-6 h-6 animate-spin rounded-full"></div><p class="ml-3">The AI is thinking...</p></div>';
+            try {
+                const response = await fetch('/generate_titles', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ topic: topic }),
+                });
+                const data = await response.json();
+                if (response.ok) {
+                    const formatted = data.titles.split('\n').filter(i => i.trim() !== '').map(item => `
+                        <div class="hook-item flex justify-between items-center py-3 border-b border-gray-700 last:border-b-0">
+                            <p class="flex-grow pr-4">${item}</p>
+                            <button class="copy-btn p-2 rounded-md hover:bg-gray-700 transition-colors" title="Copy title">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                            </button>
+                        </div>`).join('');
+                    resultsOutput.innerHTML = formatted;
+                    addCopyListeners();
+                } else {
+                    resultsOutput.innerHTML = `<p class="text-red-400">${data.error || 'An unknown error occurred.'}</p>`;
+                }
+            } catch (error) {
+                resultsOutput.innerHTML = '<p class="text-red-400">Failed to connect to the server. Please try again.</p>';
+            } finally {
+                generateBtn.disabled = false;
+                buttonText.innerText = 'Generate Titles';
+            }
+        });
+        function addCopyListeners() {
+            document.querySelectorAll('.copy-btn').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const textToCopy = e.currentTarget.previousElementSibling.innerText;
+                    navigator.clipboard.writeText(textToCopy).then(() => showToast());
+                });
+            });
+        }
+        function showToast() {
+            toast.classList.remove('bottom-[-100px]');
+            toast.classList.add('bottom-5');
+            setTimeout(() => {
+                toast.classList.remove('bottom-5');
+                toast.classList.add('bottom-[-100px]');
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Thumbnail Analyzer - ScribeSpark</title>
+    <meta name="description" content="Get expert AI feedback on your YouTube thumbnails. Improve clarity, click-worthiness, and emotional impact to get more views.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖋️</text></svg>">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        @keyframes move-background { from { background-position: 0% 50%; } to { background-position: 100% 50%; } }
+        body { font-family: 'Inter', sans-serif; background-color: #000000; color: #E5E7EB; overflow-x: hidden; }
+        .aurora-background { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at 10% 20%, rgba(138, 43, 226, 0.2), transparent 40%), radial-gradient(circle at 80% 90%, rgba(75, 0, 130, 0.2), transparent 40%); z-index: -2; }
+        .particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: url('https://www.transparenttextures.com/patterns/stardust.png'); animation: move-background 120s linear infinite; z-index: -1; }
+        .logo-font { font-family: 'Playfair Display', serif; }
+        .content-wrapper { position: relative; z-index: 10; }
+        .card { background-color: rgba(17, 24, 39, 0.6); backdrop-filter: blur(16px); border: 1px solid rgba(55, 65, 81, 0.5); }
+        .animated-button { background-size: 200% auto; background-image: linear-gradient(to right, #8B5CF6 0%, #EC4899 51%, #8B5CF6 100%); transition: background-position 0.5s ease; }
+        .animated-button:hover { background-position: right center; }
+        .footer-link, .nav-link { transition: color 0.3s; }
+        .footer-link:hover, .nav-link:hover { color: #A78BFA; }
+        .spinner { border-top-color: #A78BFA; }
+        .prose { white-space: pre-wrap; }
+        .prose h3 { font-size: 1.25rem; font-weight: 700; color: #A78BFA; margin-top: 1.5rem; margin-bottom: 0.5rem; }
+        .prose ul { list-style-type: '✓ '; padding-left: 1.5rem; }
+        .prose li { margin-bottom: 0.5rem; }
+        .ad-container { min-height: 100px; max-height: 280px; }
+    </style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DNEEC0P0Q1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-DNEEC0P0Q1');
+</script>
+</head>
+<body>
+    <div class="aurora-background"></div>
+    <div class="particles"></div>
+    
+    <div class="content-wrapper container mx-auto px-4 py-8 max-w-4xl min-h-screen flex flex-col">
+        <header class="flex justify-between items-center mb-16 md:mb-24">
+            <a href="/" class="flex items-center space-x-2 text-3xl font-bold logo-font text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-purple-400"><path d="M22 18.5a2.5 2.5 0 0 1-4 0"/><path d="m14 14-2.5 2.5a2.83 2.83 0 1 0 4 4L20 16"/><path d="M14 14l4-4"/><path d="M12 6c1.5 2 3 2 4 0"/><path d="M12 6c-1.5 2-3 2-4 0"/><path d="M4 14a2.83 2.83 0 1 0 4 4L12 14"/></svg>
+                <span>ScribeSpark</span>
+            </a>
+            <nav class="hidden md:flex space-x-6 text-gray-400 font-medium">
+                <a href="/" class="nav-link">Home</a>
+                <a href="/#faq" class="nav-link">FAQs</a>
+                <a href="/blog" class="nav-link">Blog</a>
+                <a href="/about" class="nav-link">About</a>
+                <a href="/contact" class="nav-link">Contact</a>
+            </nav>
+        </header>
+
+        <main class="flex-grow">
+            <section class="text-center mb-16">
+                 <h1 class="text-4xl md:text-6xl font-extrabold mb-4 text-white leading-tight">🔬 AI Thumbnail Analyzer</h1>
+                 <p class="text-lg text-gray-400 max-w-3xl mx-auto">Get instant, expert feedback on your YouTube thumbnails to maximize your click-through rate.</p>
+            </section>
+            
+            <section class="card rounded-2xl p-6 md:p-8 shadow-2xl max-w-2xl mx-auto">
+                <div>
+                    <label for="thumbnail-upload" class="block text-sm font-medium text-gray-300 mb-2 text-left">Upload your thumbnail (JPG or PNG):</label>
+                    <input type="file" id="thumbnail-upload" accept="image/jpeg, image/png" class="w-full text-gray-300 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-gray-700 file:text-gray-300 hover:file:bg-gray-600"/>
+                </div>
+                <div id="image-preview-container" class="mt-4 hidden text-center">
+                    <p class="text-sm font-medium text-gray-300 mb-2">Your Thumbnail:</p>
+                    <img id="image-preview" src="#" alt="Thumbnail Preview" class="max-w-xs mx-auto rounded-lg shadow-md border border-gray-700"/>
+                </div>
+                <button id="analyze-btn" class="w-full mt-6 animated-button text-white font-semibold py-3 px-4 rounded-lg transition-all duration-300 flex items-center justify-center space-x-2 shadow-lg hover:shadow-purple-500/30" disabled>
+                    <span id="button-text-analyzer">Analyze Thumbnail</span>
+                </button>
+                <div class="mt-8 results-area bg-gray-900/50 border border-gray-700 rounded-lg p-6 min-h-[150px] flex items-center justify-center text-left">
+                    <div id="results-output" class="w-full text-gray-300 prose"><p class="text-gray-500 text-center">Your AI-powered analysis will appear here.</p></div>
+                </div>
+            </section>
+
+            <section class="my-16 text-center">
+                <div class="ad-container max-w-3xl mx-auto flex justify-center items-center card rounded-2xl p-4">
+                    <script async="async" data-cfasync="false" src="//pl27581880.revenuecpmgate.com/052069ccfdb5325fcd1d06e361e10bee/invoke.js"></script>
+                    <div id="container-052069ccfdb5325fcd1d06e361e10bee"></div>
+                </div>
+            </section>
+
+        </main>
+
+        <footer class="text-center border-t border-gray-800 pt-8 mt-16">
+            <div class="flex justify-center space-x-6 mb-4 text-gray-400">
+                <a href="/about" class="footer-link">About Us</a>
+                <a href="/privacy" class="footer-link">Privacy Policy</a>
+                <a href="/contact" class="footer-link">Contact</a>
+            </div>
+            <p class="text-gray-600">&copy; 2025 ScribeSpark. Your Ultimate AI Creator Suite.</p>
+             <div class="mt-6">
+                <h4 class="text-lg font-semibold text-white mb-2">Our Other Projects</h4>
+                <div class="flex justify-center space-x-6 text-gray-400">
+                    <a href="https://toolify.66ghz.com" target="_blank" class="footer-link">Toolify</a>
+                    <a href="https://www.linkdart.online" target="_blank" class="footer-link">LinkDart</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        const uploadInput = document.getElementById('thumbnail-upload');
+        const previewContainer = document.getElementById('image-preview-container');
+        const previewImage = document.getElementById('image-preview');
+        const analyzeBtn = document.getElementById('analyze-btn');
+        const buttonText = document.getElementById('button-text-analyzer');
+        const resultsOutput = document.getElementById('results-output');
+        let imageData = null;
+
+        uploadInput.addEventListener('change', (event) => {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    imageData = e.target.result;
+                    previewImage.src = imageData;
+                    previewContainer.classList.remove('hidden');
+                    analyzeBtn.disabled = false;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+        
+        analyzeBtn.addEventListener('click', async () => {
+            if (!imageData) { alert('Please upload a thumbnail image first!'); return; }
+            analyzeBtn.disabled = true;
+            buttonText.innerText = 'Analyzing...';
+            resultsOutput.innerHTML = '<div class="flex items-center justify-center h-full text-gray-500"><div class="spinner border-gray-700 border-t-purple-400 w-6 h-6 animate-spin rounded-full"></div><p class="ml-3">The AI is analyzing...</p></div>';
+            try {
+                const response = await fetch('/analyze_thumbnail', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ image: imageData }),
+                });
+                const data = await response.json();
+                if (response.ok) {
+                    let html = data.analysis.replace(/\*\*(.*?)\*\*/g, '<h3>$1</h3>');
+                    html = html.replace(/-\s(.*?)(?=\n|$)/g, '<li>$1</li>');
+                    resultsOutput.innerHTML = `<div class="prose">${html.replace(/(\<li\>.*?\<\/li\>)/g, '<ul>$1</ul>').replace(/<\/ul>\n<ul>/g, '')}</div>`;
+                } else {
+                    resultsOutput.innerHTML = `<p class="text-red-400">${data.error || 'An unknown error occurred.'}</p>`;
+                }
+            } catch (error) {
+                resultsOutput.innerHTML = '<p class="text-red-400">Failed to connect to the server. Please try again.</p>';
+            } finally {
+                analyzeBtn.disabled = false;
+                buttonText.innerText = 'Analyze Thumbnail';
+            }
+        });
+    </script>
+</body>
+</html>
+

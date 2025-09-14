@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us - ScribeSpark</title>
+    <meta name="description" content="Learn about the mission and vision of ScribeSpark. We're dedicated to empowering YouTube creators with free, powerful AI tools to help them grow and succeed.">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖋️</text></svg>">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,35 +19,76 @@
         .gradient-text { background: linear-gradient(to right, #A78BFA, #F472B6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .content-wrapper { position: relative; z-index: 10; }
         .card { background-color: rgba(17, 24, 39, 0.6); backdrop-filter: blur(16px); border: 1px solid rgba(55, 65, 81, 0.5); }
+        .footer-link, .nav-link { transition: color 0.3s; }
+        .footer-link:hover, .nav-link:hover { color: #A78BFA; }
+        .prose h2 { color: #fff; font-weight: 700; margin-bottom: 0.75rem; margin-top: 2rem; font-size: 1.875rem; }
+        .prose p { color: #d1d5db; margin-bottom: 1.25rem; line-height: 1.75; }
+        .ad-container { min-height: 100px; max-height: 280px; }
     </style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DNEEC0P0Q1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-DNEEC0P0Q1');
+</script>
 </head>
 <body>
     <div class="aurora-background"></div>
     <div class="particles"></div>
     <div class="content-wrapper container mx-auto px-4 py-8 max-w-4xl min-h-screen flex flex-col">
         <header class="flex justify-between items-center mb-16 md:mb-24">
-            <a href="/" class="flex items-center space-x-2 text-3xl font-bold logo-font text-white">
-                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 18.5a2.5 2.5 0 0 1-4 0"/><path d="m14 14-2.5 2.5a2.83 2.83 0 1 0 4 4L20 16"/><path d="M14 14l4-4"/><path d="M12 6c1.5 2 3 2 4 0"/><path d="M12 6c-1.5 2-3 2-4 0"/><path d="M4 14a2.83 2.83 0 1 0 4 4L12 14"/></svg>
-                <span>Scribe<span class="gradient-text">Spark</span></span>
+             <a href="/" class="flex items-center space-x-2 text-3xl font-bold logo-font text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-purple-400"><path d="M22 18.5a2.5 2.5 0 0 1-4 0"/><path d="m14 14-2.5 2.5a2.83 2.83 0 1 0 4 4L20 16"/><path d="M14 14l4-4"/><path d="M12 6c1.5 2 3 2 4 0"/><path d="M12 6c-1.5 2-3 2-4 0"/><path d="M4 14a2.83 2.83 0 1 0 4 4L12 14"/></svg>
+                <span>ScribeSpark</span>
             </a>
             <nav class="hidden md:flex space-x-6 text-gray-400 font-medium">
-                <a href="/#tool" class="hover:text-white transition-colors">Tool</a>
-                <a href="/#faq" class="hover:text-white transition-colors">FAQs</a>
-                <a href="/about" class="hover:text-white transition-colors">About Us</a>
-                <a href="/contact" class="hover:text-white transition-colors">Contact</a>
+                <a href="/" class="nav-link">Home</a>
+                <a href="/#faq" class="nav-link">FAQs</a>
+                <a href="/blog" class="nav-link">Blog</a>
+                <a href="/about" class="nav-link">About</a>
+                <a href="/contact" class="nav-link">Contact</a>
             </nav>
         </header>
 
-        <main class="card rounded-2xl p-8 md:p-12 shadow-2xl flex-grow">
-            <h1 class="text-4xl font-extrabold text-white mb-6">Our Mission</h1>
-            <div class="space-y-6 text-gray-300 text-lg">
-                <p>ScribeSpark was born from a simple observation: the first few seconds of a video determine its fate. We realized that many talented creators were struggling with the initial hook, losing potential audience before their amazing content even had a chance to shine.</p>
-                <p>Our mission is to empower every content creator, from beginners to seasoned pros, with the tools they need to succeed. We leverage the power of advanced AI to instantly generate creative, engaging, and viral-worthy video hooks, removing the guesswork and saving creators valuable time and energy.</p>
-            </div>
+        <main class="flex-grow">
+            <section class="card rounded-2xl p-8 md:p-12 shadow-2xl prose max-w-none">
+                 <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-8 !mt-0">About ScribeSpark</h1>
+                 
+                 <h2>Our Mission</h2>
+                 <p>In today's crowded digital landscape, getting noticed on YouTube is tougher than ever. Great content is crucial, but it's not enough. You need the right hooks, titles, and descriptions to capture attention and signal to the algorithm that your videos are worth watching. Our mission at ScribeSpark is to level the playing field by providing every creator, big or small, with free, powerful, and easy-to-use AI tools to spark their creativity and fuel their growth.</p>
+
+                 <h2>What We Do</h2>
+                 <p>ScribeSpark is an "Ultimate Creator Suite" designed specifically for YouTubers. We leverage the power of cutting-edge AI to help you with the most challenging parts of content creation. From generating viral hooks that stop viewers from scrolling to crafting SEO-optimized titles and descriptions that rank higher in search results, our tools are built to give you a competitive edge. We handle the data-driven parts of content strategy so you can focus on what you do best: creating amazing videos.</p>
+
+                 <h2>Our Vision for the Future</h2>
+                 <p>We believe that creativity has no limits, and access to great tools shouldn't either. The tools you see today are just the beginning. Our vision is to build the most comprehensive, free-to-use suite of AI-powered tools for content creators. We are constantly working on new features like script writers, idea finders, and thumbnail analyzers to help you at every stage of your creative process. Join our community and let's spark a new era of content creation, together.</p>
+            </section>
+            
+            <section class="my-16 text-center">
+                <div class="ad-container max-w-3xl mx-auto flex justify-center items-center card rounded-2xl p-4">
+                    <script async="async" data-cfasync="false" src="//pl27581880.revenuecpmgate.com/052069ccfdb5325fcd1d06e361e10bee/invoke.js"></script>
+                    <div id="container-052069ccfdb5325fcd1d06e361e10bee"></div>
+                </div>
+            </section>
         </main>
 
         <footer class="text-center border-t border-gray-800 pt-8 mt-16">
-            <p class="text-gray-600">&copy; 2025 ScribeSpark. All rights reserved.</p>
+            <div class="flex justify-center space-x-6 mb-4 text-gray-400">
+                <a href="/about" class="footer-link">About Us</a>
+                <a href="/privacy" class="footer-link">Privacy Policy</a>
+                <a href="/contact" class="footer-link">Contact</a>
+            </div>
+            <p class="text-gray-600">&copy; 2025 ScribeSpark. Your Ultimate AI Creator Suite.</p>
+            <div class="mt-6">
+                <h4 class="text-lg font-semibold text-white mb-2">Our Other Projects</h4>
+                <div class="flex justify-center space-x-6 text-gray-400">
+                    <a href="https://toolify.66ghz.com" target="_blank" class="footer-link">Toolify</a>
+                    <a href="https://www.linkdart.online" target="_blank" class="footer-link">LinkDart</a>
+                </div>
+            </div>
         </footer>
     </div>
 </body>
