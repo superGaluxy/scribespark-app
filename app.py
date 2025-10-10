@@ -20,7 +20,7 @@ else:
     print("WARNING: GEMINI_API_KEY is not set.")
 
 # AI model ko select karte hain
-model = genai.GenerativeModel('gemini-1.5-flash-latest')
+model = genai.GenerativeModel('gemini-pro')
 
 # --- Page Routes (No changes here) ---
 @app.route('/')
