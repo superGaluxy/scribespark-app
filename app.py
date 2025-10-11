@@ -1,4 +1,17 @@
 # app.py
+import google.generativeai as genai
+# ... other imports
+
+# --- THIS CODE IS CRITICAL ---
+try:
+    print("--- LIBRARY VERSION CHECK ---")
+    print(f"Google AI Library Version: {genai.__version__}")
+    print("---------------------------")
+except Exception as e:
+    print(f"Could not check library version: {e}")
+# -----------------------------
+
+# ... rest of your app code
 
 import google.generativeai as genai
 from flask import Flask, render_template, request, jsonify
