@@ -4,8 +4,9 @@ import google.generativeai as genai
 from flask import Flask, render_template, request, jsonify
 import os
 
-# --- (Optional) Add this to check library version in logs ---
-# This is for debugging, you can remove it later.
+# --- VERY IMPORTANT: DIAGNOSTIC CODE ---
+# This code will print the installed library version to your logs.
+# This is the key to solving the 'v1beta' error.
 try:
     print("--- LIBRARY VERSION CHECK ---")
     print(f"Google AI Library Version: {genai.__version__}")
@@ -33,7 +34,6 @@ else:
 model = genai.GenerativeModel('gemini-pro')
 
 # --- Page Routes ---
-# Inmein koi badlav nahi hai
 @app.route('/')
 def home():
     return render_template('index.html')
@@ -88,7 +88,7 @@ def contact():
 
 
 # --- API Routes ---
-# Sabhi API routes ab poore kar diye gaye hain
+# All API routes are now complete.
 
 @app.route('/generate_hooks', methods=['POST'])
 def generate_hooks():
@@ -191,7 +191,7 @@ def generate_channel_name():
 
 @app.route('/analyze_thumbnail', methods=['POST'])
 def analyze_thumbnail():
-    # Note: This function analyzes a *description* of a thumbnail, as handling image uploads is more complex.
+    # Note: This function analyzes a *description* of a thumbnail.
     if not API_KEY:
         return jsonify({'error': 'API key not configured.'}), 500
     try:
@@ -204,7 +204,6 @@ def analyze_thumbnail():
         print(f"Error in analyze_thumbnail: {e}")
         return jsonify({'error': 'An error occurred while analyzing the thumbnail idea.'}), 500
 
-# Server ko run karte hain
-# Yeh block sirf local testing ke liye chalta hai, Render isey use nahi karta.
+# This block only runs for local testing. Render uses the Gunicorn command instead.
 if __name__ == '__main__':
     app.run(debug=True, port=8080)
