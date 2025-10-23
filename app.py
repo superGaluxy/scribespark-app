@@ -1,25 +1,9 @@
 # app.py
 import google.generativeai as genai
-# ... other imports
-
-# --- THIS CODE IS CRITICAL ---
-try:
-    print("--- LIBRARY VERSION CHECK ---")
-    print(f"Google AI Library Version: {genai.__version__}")
-    print("---------------------------")
-except Exception as e:
-    print(f"Could not check library version: {e}")
-# -----------------------------
-
-# ... rest of your app code
-
-import google.generativeai as genai
 from flask import Flask, render_template, request, jsonify
 import os
 
-# --- VERY IMPORTANT: DIAGNOSTIC CODE ---
-# This code will print the installed library version to your logs.
-# This is the key to solving the 'v1beta' error.
+# --- LIBRARY VERSION CHECK (Optional but useful) ---
 try:
     print("--- LIBRARY VERSION CHECK ---")
     print(f"Google AI Library Version: {genai.__version__}")
@@ -33,6 +17,7 @@ except Exception as e:
 app = Flask(__name__)
 
 # API Key ko Render ke "Environment Variables" se lete hain
+# Render mein variable ka naam 'GEMINI_API_KEY' hona chahiye.
 API_KEY = os.environ.get('GEMINI_API_KEY')
 
 # Gemini API ko configure karte hain
@@ -43,8 +28,9 @@ else:
     print("WARNING: GEMINI_API_KEY environment variable is not set.")
 
 # AI model ko select karte hain
-# 'gemini-pro' is a stable and reliable choice.
-model = genai.GenerativeModel('gemini-pro')
+# *** CRITICAL FIX: Model name updated from 'gemini-pro' to 'gemini-2.5-flash' ***
+# 'gemini-2.5-flash' naye aur stable API calls ke liye recommended hai.
+model = genai.GenerativeModel('gemini-2.5-flash')
 
 # --- Page Routes ---
 @app.route('/')
@@ -101,8 +87,6 @@ def contact():
 
 
 # --- API Routes ---
-# All API routes are now complete.
-
 @app.route('/generate_hooks', methods=['POST'])
 def generate_hooks():
     if not API_KEY:
@@ -115,6 +99,7 @@ def generate_hooks():
         return jsonify({'hooks': response.text.strip()})
     except Exception as e:
         print(f"Error in generate_hooks: {e}")
+        # Log the detailed error, but return a general message to the client
         return jsonify({'error': 'An error occurred while generating hooks.'}), 500
 
 @app.route('/generate_titles', methods=['POST'])
@@ -219,4 +204,8 @@ def analyze_thumbnail():
 
 # This block only runs for local testing. Render uses the Gunicorn command instead.
 if __name__ == '__main__':
-    app.run(debug=True, port=8080)
+    # Render deployment environment variables automatically set the correct port
+    # but for local testing, 8080 is common.
+    app.run(debug=True, port=int(os.environ.get("PORT", 8080)))
+
+# --- END OF FILE app.py ---
