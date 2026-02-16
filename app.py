@@ -8,12 +8,15 @@ import os
 # Flask app ko initialize karte hain
 app = Flask(__name__)
 
-# ----------------- VERY IMPORTANT -----------------
-# Yahan par aapki API key honi chahiye
-API_KEY = os.environ.get('API_KEY', 'AIzaSyDaCjUzV4IQEYXE0avweHdRJ9EWmjvLutA')
+# ----------------- ENVIRONMENT VARIABLE SETUP -----------------
+# Render ke dashboard mein variable ka naam 'API_KEY' hona chahiye
+API_KEY = os.environ.get('API_KEY')
 
-# Gemini API ko configure karte hain
-genai.configure(api_key=API_KEY)
+if not API_KEY:
+    print("WARNING: API_KEY not found in environment variables!")
+else:
+    # Gemini API ko configure karte hain
+    genai.configure(api_key=API_KEY)
 
 # AI model ko select karte hain
 model = genai.GenerativeModel('gemini-1.5-flash-latest')
@@ -410,7 +413,6 @@ Be specific and provide actionable insights."""
         print(f"Error in analyze_competitor: {e}")
         return jsonify({'error': 'An error occurred.'}), 500
 
-# Server ko run karte hain
 @app.route('/sponsorship-email-generator')
 def sponsorship_email_generator_page():
     return render_template('sponsorship-email-generator.html')
@@ -444,13 +446,7 @@ Keep it concise, professional, and persuasive."""
         print(f"Error in generate_sponsorship_email: {e}")
         return jsonify({'error': 'An error occurred.'}), 500
 
-@app.route('/sitemap.xml')
-def sitemap():
-    return send_from_directory('static', 'sitemap.xml')
-
-@app.route('/robots.txt')
-def robots():
-    return send_from_directory('static', 'robots.txt')
-
 if __name__ == '__main__':
-    app.run(debug=True, port=8080)
+    # Render port automatically handle karega
+    port = int(os.environ.get('PORT', 8080))
+    app.run(host='0.0.0.0', port=port)
