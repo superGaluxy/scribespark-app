@@ -10,7 +10,7 @@ app = Flask(__name__)
 
 # ----------------- VERY IMPORTANT -----------------
 # Yahan par aapki API key honi chahiye
-API_KEY = os.environ.get('API_KEY', 'AIzaSyDaCjUzV4IQEYXE0avweHdRJ9EWmjvLutA')
+API_KEY = os.environ.get('API_KEY')
 
 # Gemini API ko configure karte hain
 genai.configure(api_key=API_KEY)
