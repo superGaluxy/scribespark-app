@@ -19,7 +19,8 @@ else:
     genai.configure(api_key=API_KEY)
 
 # AI model ko select karte hain (Naya stable version)
-model = genai.GenerativeModel('gemini-1.5-flash')
+
+model = genai.GenerativeModel('gemini-pro')
 
 # --- Static folder ensure ---
 static_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static')
