@@ -1,140 +1,263 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI YouTube Script Writer - ScribeSpark</title>
-    <meta name="description" content="Generate a complete, structured YouTube video script outline, including intro, main points, and outro, with ScribeSpark's free AI tool.">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖋️</text></svg>">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        @keyframes move-background { from { background-position: 0% 50%; } to { background-position: 100% 50%; } }
-        body { font-family: 'Inter', sans-serif; background-color: #000000; color: #E5E7EB; overflow-x: hidden; }
-        .aurora-background { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at 10% 20%, rgba(138, 43, 226, 0.2), transparent 40%), radial-gradient(circle at 80% 90%, rgba(75, 0, 130, 0.2), transparent 40%); z-index: -2; }
-        .particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: url('https://www.transparenttextures.com/patterns/stardust.png'); animation: move-background 120s linear infinite; z-index: -1; }
-        .logo-font { font-family: 'Playfair Display', serif; }
-        .content-wrapper { position: relative; z-index: 10; }
-        .card { background-color: rgba(17, 24, 39, 0.6); backdrop-filter: blur(16px); border: 1px solid rgba(55, 65, 81, 0.5); }
-        .animated-button { background-size: 200% auto; background-image: linear-gradient(to right, #8B5CF6 0%, #EC4899 51%, #8B5CF6 100%); transition: background-position 0.5s ease; }
-        .animated-button:hover { background-position: right center; }
-        .footer-link, .nav-link { transition: color 0.3s; }
-        .footer-link:hover, .nav-link:hover { color: #A78BFA; }
-        .spinner { border-top-color: #A78BFA; }
-        .prose { white-space: pre-wrap; }
-        .prose h3 { font-size: 1.25rem; font-weight: 700; color: #A78BFA; margin-top: 1.5rem; margin-bottom: 0.5rem; }
-        .prose ul { list-style-type: '✓ '; padding-left: 1.5rem; }
-        .prose li { margin-bottom: 0.5rem; }
-        .ad-container { min-height: 100px; max-height: 280px; }
-    </style>
-</head>
-<body>
-    <div class="aurora-background"></div>
-    <div class="particles"></div>
-    
-    <div class="content-wrapper container mx-auto px-4 py-8 max-w-4xl min-h-screen flex flex-col">
-        <header class="flex justify-between items-center mb-16 md:mb-24">
-            <a href="/" class="flex items-center space-x-2 text-3xl font-bold logo-font text-white">
-                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-purple-400"><path d="M22 18.5a2.5 2.5 0 0 1-4 0"/><path d="m14 14-2.5 2.5a2.83 2.83 0 1 0 4 4L20 16"/><path d="M14 14l4-4"/><path d="M12 6c1.5 2 3 2 4 0"/><path d="M12 6c-1.5 2-3 2-4 0"/><path d="M4 14a2.83 2.83 0 1 0 4 4L12 14"/></svg>
-                <span>ScribeSpark</span>
-            </a>
-            <nav class="hidden md:flex space-x-6 text-gray-400 font-medium">
-                <a href="/" class="nav-link">Home</a>
-                <a href="/#faq" class="nav-link">FAQs</a>
-                <a href="/blog" class="nav-link">Blog</a>
-                <a href="/about" class="nav-link">About</a>
-                <a href="/contact" class="nav-link">Contact</a>
-            </nav>
-        </header>
+{% extends "layout.html" %}
 
-        <main class="flex-grow">
-            <section class="text-center mb-16">
-                 <h1 class="text-4xl md:text-6xl font-extrabold mb-4 text-white leading-tight">📜 AI Script Writer</h1>
-                 <p class="text-lg text-gray-400 max-w-3xl mx-auto">Generate a structured script outline for your video, from hook to call-to-action.</p>
+{% block title %}Free AI YouTube Script Writer - Video Script Generator | ScribeSpark{% endblock %}
+
+{% block meta %}
+    <meta name="description"
+        content="Create professional YouTube video scripts instantly with AI. Free script writer tool - generate engaging intros, structured outlines & powerful CTAs. Best YouTube script generator 2025.">
+    <meta name="keywords"
+        content="YouTube script writer, AI script generator, video script template, YouTube video script, script outline generator, free script writer, YouTube content script, video scriptwriting tool">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://scribespark.online/script-writer">
+{% endblock %}
+
+{% block styles %}
+<style>
+@keyframes move-background {
+            from {
+                background-position: 0% 50%;
+            }
+
+            to {
+                background-position: 100% 50%;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: -200% 0;
+            }
+
+            100% {
+                background-position: 200% 0;
+            }
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #000000;
+            color: #E5E7EB;
+            overflow-x: hidden;
+        }
+
+        .aurora-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 10% 20%, rgba(138, 43, 226, 0.2), transparent 40%), radial-gradient(circle at 80% 90%, rgba(75, 0, 130, 0.2), transparent 40%);
+            z-index: -2;
+        }
+
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
+            animation: move-background 120s linear infinite;
+            z-index: -1;
+        }
+
+        .logo-font {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .gradient-text {
+            background: linear-gradient(to right, #A78BFA, #F472B6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .content-wrapper {
+            position: relative;
+            z-index: 10;
+        }
+
+        .card {
+            background-color: rgba(17, 24, 39, 0.6);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(55, 65, 81, 0.5);
+        }
+
+        .animated-button {
+            background-size: 200% auto;
+            background-image: linear-gradient(to right, #8B5CF6 0%, #EC4899 51%, #8B5CF6 100%);
+            transition: background-position 0.5s ease;
+        }
+
+        .animated-button:hover {
+            background-position: right center;
+        }
+
+        .animated-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .result-fade {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .skeleton {
+            background: linear-gradient(90deg, rgba(55, 65, 81, 0.3) 25%, rgba(55, 65, 81, 0.5) 50%, rgba(55, 65, 81, 0.3) 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+            border-radius: 8px;
+        }
+
+        .input-focus:focus {
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.3);
+            border-color: #8B5CF6;
+        }
+
+        #toast {
+            transition: all 0.5s ease;
+        }
+
+        .result-text {
+            white-space: pre-wrap;
+            line-height: 1.8;
+        }
+
+        .result-text strong,
+        .result-text b {
+            color: #A78BFA;
+        }
+
+        select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%239CA3AF' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: calc(100% - 16px) center;
+        }
+</style>
+{% endblock %}
+
+{% block content %}
+    <div id="toast"
+        class="fixed bottom-[-100px] left-1/2 -translate-x-1/2 bg-purple-600 text-white py-2 px-5 rounded-lg z-50 font-medium">
+        Copied to clipboard!</div>
+    <section class="text-center mb-10">
+                <div class="text-5xl mb-4">📜</div>
+                <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-4">AI Script Writer</h1>
+                <p class="text-lg text-gray-400 max-w-2xl mx-auto">Create structured video scripts with hook, main
+                    content, and call-to-action.</p>
             </section>
-            
-            <section class="card rounded-2xl p-6 md:p-8 shadow-2xl max-w-2xl mx-auto">
-                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+
+            <section class="card rounded-2xl p-8 md:p-10 shadow-2xl mb-8">
+                <div class="space-y-6">
                     <div>
-                        <label for="video-topic-script" class="block text-sm font-medium text-gray-300 mb-2 text-left">Your video topic:</label>
-                        <textarea id="video-topic-script" rows="4" class="w-full bg-gray-900 border border-gray-700 rounded-lg p-3 text-gray-200 focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition duration-200 placeholder-gray-500" placeholder="e.g., 5 common mistakes beginner photographers make"></textarea>
+                        <label for="topicInput" class="block text-sm font-semibold text-gray-300 mb-2">Video
+                            Topic</label>
+                        <input type="text" id="topicInput" placeholder="e.g., How AI is changing the future of work"
+                            class="input-focus w-full bg-gray-900/80 border border-gray-700 rounded-xl p-4 text-gray-200 placeholder-gray-500 outline-none text-lg">
                     </div>
                     <div>
-                        <label for="video-length" class="block text-sm font-medium text-gray-300 mb-2 text-left">Approximate video length:</label>
-                         <select id="video-length" class="w-full bg-gray-900 border border-gray-700 rounded-lg p-3 text-gray-200 focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition duration-200 h-[104px] md:h-auto">
-                            <option>2-3 minutes</option>
-                            <option selected>5-7 minutes</option>
-                            <option>10-12 minutes</option>
-                            <option>15+ minutes</option>
+                        <label for="lengthSelect" class="block text-sm font-semibold text-gray-300 mb-2">Target Video
+                            Length</label>
+                        <select id="lengthSelect"
+                            class="input-focus w-full bg-gray-900/80 border border-gray-700 rounded-xl p-4 text-gray-200 outline-none cursor-pointer">
+                            <option value="2 minutes">Short (2 minutes)</option>
+                            <option value="5 minutes" selected>Medium (5 minutes)</option>
+                            <option value="10 minutes">Long (10 minutes)</option>
+                            <option value="15 minutes">Extended (15 minutes)</option>
                         </select>
                     </div>
-                </div>
-                <button id="generate-script-btn" class="w-full mt-4 animated-button text-white font-semibold py-3 px-4 rounded-lg transition-all duration-300 flex items-center justify-center space-x-2 shadow-lg hover:shadow-purple-500/30">
-                    <span id="button-text-script">Generate Script Outline</span>
-                </button>
-                <div class="mt-8 results-area bg-gray-900/50 border border-gray-700 rounded-lg p-6 min-h-[150px] flex items-center justify-center text-left">
-                    <div id="results-output" class="w-full text-gray-300 prose"><p class="text-gray-500 text-center">Your full AI-generated script outline will appear here.</p></div>
+                    <button id="generateBtn" onclick="generateScript()"
+                        class="animated-button w-full text-white font-bold py-4 px-6 rounded-xl text-lg flex items-center justify-center gap-3">
+                        <span id="btnIcon">⚡</span>
+                        <span id="btnText">Generate Script</span>
+                    </button>
                 </div>
             </section>
 
-           
-        </main>
-
-        <footer class="text-center border-t border-gray-800 pt-8 mt-16">
-            <div class="flex justify-center space-x-6 mb-4 text-gray-400">
-                <a href="/about" class="footer-link">About Us</a>
-                <a href="/privacy" class="footer-link">Privacy Policy</a>
-                <a href="/contact" class="footer-link">Contact</a>
-            </div>
-            <p class="text-gray-600">&copy; 2025 ScribeSpark. Your Ultimate AI Creator Suite.</p>
-             <div class="mt-6">
-                <h4 class="text-lg font-semibold text-white mb-2">Our Other Projects</h4>
-                <div class="flex justify-center space-x-6 text-gray-400">
-                    <a href="https://toolify.66ghz.com" target="_blank" class="footer-link">Toolify</a>
-                    <a href="https://www.linkdart.online" target="_blank" class="footer-link">LinkDart</a>
+            <section id="loadingSection" class="hidden">
+                <div class="space-y-3">
+                    <div class="skeleton h-6 w-full"></div>
+                    <div class="skeleton h-6 w-5/6"></div>
+                    <div class="skeleton h-6 w-full"></div>
+                    <div class="skeleton h-6 w-4/6"></div>
+                    <div class="skeleton h-6 w-full"></div>
+                    <div class="skeleton h-6 w-3/4"></div>
+                    <div class="skeleton h-6 w-full"></div>
+                    <div class="skeleton h-6 w-5/6"></div>
                 </div>
-            </div>
-        </footer>
-    </div>
+            </section>
 
-    <script>
-        const generateBtn = document.getElementById('generate-script-btn');
-        const buttonText = document.getElementById('button-text-script');
-        const topicInput = document.getElementById('video-topic-script');
-        const lengthInput = document.getElementById('video-length');
-        const resultsOutput = document.getElementById('results-output');
-        
-        generateBtn.addEventListener('click', async () => {
-            const topic = topicInput.value.trim();
-            const length = lengthInput.value;
-            if (!topic) { alert('Please enter a video topic!'); return; }
-            generateBtn.disabled = true;
-            buttonText.innerText = 'Generating...';
-            resultsOutput.innerHTML = '<div class="flex items-center justify-center h-full text-gray-500"><div class="spinner border-gray-700 border-t-purple-400 w-6 h-6 animate-spin rounded-full"></div><p class="ml-3">The AI is writing the script...</p></div>';
+            <section id="resultsSection" class="hidden">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-xl font-bold text-white">🎬 Your Script</h2>
+                    <button onclick="copyResult()"
+                        class="text-sm text-purple-400 hover:text-purple-300 transition-colors font-medium px-3 py-1 rounded-lg hover:bg-purple-500/10">📋
+                        Copy All</button>
+                </div>
+                <div class="card rounded-2xl p-6 md:p-8 result-fade">
+                    <div id="resultText" class="result-text text-gray-300"></div>
+                </div>
+            </section>
+
+            <section id="errorSection" class="hidden card rounded-2xl p-6 border-red-500/30">
+                <p class="text-red-400 font-medium" id="errorMessage"></p>
+            </section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+        let generatedText = '';
+        async function generateScript() {
+            const topic = document.getElementById('topicInput').value.trim();
+            if (!topic) { showError('Please enter a video topic first!'); return; }
+            const length = document.getElementById('lengthSelect').value;
+            const btn = document.getElementById('generateBtn');
+            btn.disabled = true;
+            document.getElementById('btnText').textContent = 'Writing Script...';
+            document.getElementById('btnIcon').textContent = '⏳';
+            document.getElementById('resultsSection').classList.add('hidden');
+            document.getElementById('errorSection').classList.add('hidden');
+            document.getElementById('loadingSection').classList.remove('hidden');
             try {
                 const response = await fetch('/generate_script', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ topic: topic, length: length }),
+                    body: JSON.stringify({ topic, length })
                 });
                 const data = await response.json();
-                if (response.ok) {
-                    let html = data.script.replace(/\*\*(.*?)\*\*/g, '<h3>$1</h3>');
-                    html = html.replace(/-\s(.*?)(?=\n|$)/g, '<li>$1</li>');
-                    resultsOutput.innerHTML = `<div class="prose">${html.replace(/(\<li\>.*?\<\/li\>)/g, '<ul>$1</ul>').replace(/<\/ul>\n<ul>/g, '')}</div>`;
-                } else {
-                    resultsOutput.innerHTML = `<p class="text-red-400 text-center">${data.error || 'An unknown error occurred.'}</p>`;
-                }
-            } catch (error) {
-                resultsOutput.innerHTML = '<p class="text-red-400 text-center">Failed to connect to the server. Please try again.</p>';
-            } finally {
-                generateBtn.disabled = false;
-                buttonText.innerText = 'Generate Script Outline';
+                if (data.error) { showError(data.error); return; }
+                generatedText = data.script;
+                const formatted = generatedText
+                    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                    .replace(/^- (.*)/gm, '• $1')
+                    .replace(/^#+ (.*)/gm, '<strong style="font-size:1.1em">$1</strong>');
+                document.getElementById('resultText').innerHTML = formatted;
+                document.getElementById('resultsSection').classList.remove('hidden');
+            } catch (err) { showError('Network error. Please try again.'); }
+            finally {
+                btn.disabled = false;
+                document.getElementById('btnText').textContent = 'Generate Script';
+                document.getElementById('btnIcon').textContent = '⚡';
+                document.getElementById('loadingSection').classList.add('hidden');
             }
-        });
+        }
+        function copyResult() { navigator.clipboard.writeText(generatedText); showToast(); }
+        function showError(msg) { document.getElementById('errorMessage').textContent = msg; document.getElementById('errorSection').classList.remove('hidden'); document.getElementById('loadingSection').classList.add('hidden'); }
+        function showToast() { const t = document.getElementById('toast'); t.style.bottom = '30px'; setTimeout(() => { t.style.bottom = '-100px'; }, 2000); }
+        document.getElementById('topicInput').addEventListener('keypress', (e) => { if (e.key === 'Enter') generateScript(); });
     </script>
-</body>
-</html>
-
+{% endblock %}

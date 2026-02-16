@@ -1,17 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us - ScribeSpark</title>
-    <meta name="description" content="Get in touch with the ScribeSpark team. We welcome your feedback, suggestions, and questions about our free AI YouTube tools.">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖋️</text></svg>">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        @keyframes move-background { from { background-position: 0% 50%; } to { background-position: 100% 50%; } }
+{% extends "layout.html" %}
+
+{% block title %}Contact ScribeSpark - Get Support & Feedback{% endblock %}
+
+{% block meta %}
+    <meta name="description" content="Contact the ScribeSpark team for support, feedback or partnership inquiries. We are always here to help YouTube creators succeed.">
+    <meta name="keywords" content="contact ScribeSpark, ScribeSpark support, YouTube tools support, ScribeSpark feedback, creator tools help">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://scribespark.online/contact">
+{% endblock %}
+
+{% block styles %}
+<style>
+@keyframes move-background { from { background-position: 0% 50%; } to { background-position: 100% 50%; } }
         body { font-family: 'Inter', sans-serif; background-color: #000000; color: #E5E7EB; overflow-x: hidden; }
         .aurora-background { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at 10% 20%, rgba(138, 43, 226, 0.2), transparent 40%), radial-gradient(circle at 80% 90%, rgba(75, 0, 130, 0.2), transparent 40%); z-index: -2; }
         .particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: url('https://www.transparenttextures.com/patterns/stardust.png'); animation: move-background 120s linear infinite; z-index: -1; }
@@ -21,79 +21,32 @@
         .card { background-color: rgba(17, 24, 39, 0.6); backdrop-filter: blur(16px); border: 1px solid rgba(55, 65, 81, 0.5); }
         .animated-button { background-size: 200% auto; background-image: linear-gradient(to right, #8B5CF6 0%, #EC4899 51%, #8B5CF6 100%); transition: background-position 0.5s ease; }
         .animated-button:hover { background-position: right center; }
-        .footer-link, .nav-link { transition: color 0.3s; }
-        .footer-link:hover, .nav-link:hover { color: #A78BFA; }
-        .ad-container { min-height: 100px; max-height: 280px; }
-    </style>
-</head>
-<body>
-    <div class="aurora-background"></div>
-    <div class="particles"></div>
-    <div class="content-wrapper container mx-auto px-4 py-8 max-w-4xl min-h-screen flex flex-col">
-        <header class="flex justify-between items-center mb-16 md:mb-24">
-            <a href="/" class="flex items-center space-x-2 text-3xl font-bold logo-font text-white">
-                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-purple-400"><path d="M22 18.5a2.5 2.5 0 0 1-4 0"/><path d="m14 14-2.5 2.5a2.83 2.83 0 1 0 4 4L20 16"/><path d="M14 14l4-4"/><path d="M12 6c1.5 2 3 2 4 0"/><path d="M12 6c-1.5 2-3 2-4 0"/><path d="M4 14a2.83 2.83 0 1 0 4 4L12 14"/></svg>
-                <span>ScribeSpark</span>
-            </a>
-            <nav class="hidden md:flex space-x-6 text-gray-400 font-medium">
-                <a href="/" class="nav-link">Home</a>
-                <a href="/#faq" class="nav-link">FAQs</a>
-                <a href="/blog" class="nav-link">Blog</a>
-                <a href="/about" class="nav-link">About</a>
-                <a href="/contact" class="nav-link">Contact</a>
-            </nav>
-        </header>
+</style>
+{% endblock %}
 
-        <main class="flex-grow">
-            <section class="text-center mb-16">
-                 <h1 class="text-4xl md:text-6xl font-extrabold mb-4 text-white leading-tight">Get in Touch</h1>
-                 <p class="text-lg text-gray-400 max-w-3xl mx-auto">We'd love to hear from you! Whether you have a question, feedback, or a suggestion for a new tool, please send us a message.</p>
-            </section>
-            
-            <section class="card rounded-2xl p-8 md:p-12 shadow-2xl">
-                <!-- IMPORTANT: Replace YOUR_EMAIL@EXAMPLE.COM with your actual email address -->
-                <form action="https://formsubmit.co/YOUR_EMAIL@EXAMPLE.COM" method="POST" class="space-y-6">
-                    <div>
-                        <label for="name" class="block text-sm font-medium text-gray-300 mb-2">Your Name</label>
-                        <input type="text" name="name" id="name" required class="w-full bg-gray-900 border border-gray-700 rounded-lg p-3 text-gray-200 focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition duration-200">
-                    </div>
-                    <div>
-                        <label for="email" class="block text-sm font-medium text-gray-300 mb-2">Your Email</label>
-                        <input type="email" name="email" id="email" required class="w-full bg-gray-900 border border-gray-700 rounded-lg p-3 text-gray-200 focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition duration-200">
-                    </div>
-                    <div>
-                        <label for="message" class="block text-sm font-medium text-gray-300 mb-2">Message</label>
-                        <textarea name="message" id="message" rows="5" required class="w-full bg-gray-900 border border-gray-700 rounded-lg p-3 text-gray-200 focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition duration-200"></textarea>
-                    </div>
-                    
-                    <input type="hidden" name="_next" value="https://scribespark.online/contact">
-
-                    <button type="submit" class="w-full animated-button text-white font-semibold py-3 px-4 rounded-lg transition-all duration-300 flex items-center justify-center space-x-2 shadow-lg hover:shadow-purple-500/30">
-                        Send Message
-                    </button>
-                </form>
-            </section>
-            
-           
-
-        </main>
-
-        <footer class="text-center border-t border-gray-800 pt-8 mt-16">
-            <div class="flex justify-center space-x-6 mb-4 text-gray-400">
-                <a href="/about" class="footer-link">About Us</a>
-                <a href="/privacy" class="footer-link">Privacy Policy</a>
-                <a href="/contact" class="footer-link">Contact</a>
-            </div>
-            <p class="text-gray-600">&copy; 2025 ScribeSpark. Your Ultimate AI Creator Suite.</p>
-            <div class="mt-6">
-                <h4 class="text-lg font-semibold text-white mb-2">Our Other Projects</h4>
-                <div class="flex justify-center space-x-6 text-gray-400">
-                    <a href="https://toolify.66ghz.com" target="_blank" class="footer-link">Toolify</a>
-                    <a href="https://www.linkdart.online" target="_blank" class="footer-link">LinkDart</a>
+{% block content %}
+    
+    <h1 class="text-4xl font-extrabold text-white mb-4">Get In Touch</h1>
+            <p class="text-gray-400 mb-8">Have a question, feedback, or a feature request? We'd love to hear from you.</p>
+            <form action="#" method="POST" class="space-y-6">
+                 <div>
+                    <label for="name" class="block text-sm font-medium text-gray-300">Full Name</label>
+                    <input type="text" name="name" id="name" required class="mt-1 block w-full bg-gray-900 border-gray-700 rounded-lg p-3 text-gray-200 focus:ring-purple-500">
                 </div>
-            </div>
-        </footer>
-    </div>
-</body>
-</html>
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-300">Email Address</label>
+                    <input type="email" name="email" id="email" required class="mt-1 block w-full bg-gray-900 border-gray-700 rounded-lg p-3 text-gray-200 focus:ring-purple-500">
+                </div>
+                <div>
+                    <label for="message" class="block text-sm font-medium text-gray-300">Message</label>
+                    <textarea name="message" id="message" rows="4" required class="mt-1 block w-full bg-gray-900 border-gray-700 rounded-lg p-3 text-gray-200 focus:ring-purple-500"></textarea>
+                </div>
+                <div>
+                    <button type="submit" class="w-full animated-button text-white font-semibold py-3 px-4 rounded-lg">Send Message</button>
+                </div>
+            </form>
+{% endblock %}
 
+{% block scripts %}
+
+{% endblock %}

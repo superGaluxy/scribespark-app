@@ -1,14 +1,14 @@
 {% extends "layout.html" %}
 
-{% block title %}Free YouTube Channel Name Generator - Unique Name Ideas | ScribeSpark{% endblock %}
+{% block title %}Free AI YouTube Hook Generator - Viral Video Intros | ScribeSpark{% endblock %}
 
 {% block meta %}
     <meta name="description"
-        content="Generate unique, catchy & memorable YouTube channel name ideas with AI. Free channel name generator - find the perfect brand name for your YouTube channel 2025.">
+        content="Generate irresistible YouTube video hooks & intros instantly with AI. Free hook generator - create attention-grabbing opening lines that stop the scroll. Best YouTube intro maker 2025.">
     <meta name="keywords"
-        content="YouTube channel name generator, channel name ideas, YouTube name generator, unique channel names, catchy YouTube names, YouTube branding, free name generator, channel name finder">
+        content="YouTube hook generator, video intro generator, viral hooks, attention grabbing intros, YouTube opening lines, free hook generator, video hook ideas, YouTube retention hooks">
     <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://scribespark.online/channel-name-generator">
+    <link rel="canonical" href="https://scribespark.online/hook-generator">
 {% endblock %}
 
 {% block styles %}
@@ -116,22 +116,49 @@
             border-color: #8B5CF6;
         }
 
-        .result-item {
+        .result-fade {
             animation: fadeInUp 0.5s ease forwards;
             opacity: 0;
         }
 
+        .result-fade:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .result-fade:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .result-fade:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .result-fade:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        .result-fade:nth-child(5) {
+            animation-delay: 0.5s;
+        }
+
         .copy-btn:hover {
-            background: rgba(139, 92, 246, 0.3);
+            background-color: rgba(139, 92, 246, 0.3);
         }
 
         .copy-btn.copied {
-            background: rgba(16, 185, 129, 0.3);
+            background-color: rgba(16, 185, 129, 0.3);
             border-color: #10B981;
         }
 
         #toast {
             transition: all 0.5s;
+        }
+
+        select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%239CA3AF' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: calc(100% - 16px) center;
         }
 </style>
 {% endblock %}
@@ -139,41 +166,54 @@
 {% block content %}
     <div id="toast"
         class="fixed bottom-[-100px] left-1/2 -translate-x-1/2 bg-purple-600 text-white py-2 px-5 rounded-lg z-50 font-medium">
-        Copied!</div>
+        Copied to clipboard!</div>
     <section class="text-center mb-10">
-                <div class="text-5xl mb-4">📛</div>
-                <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-4">Channel Name Generator</h1>
-                <p class="text-lg text-gray-400 max-w-2xl mx-auto">Generate unique, memorable YouTube channel names for
-                    your niche.</p>
+                <div class="text-5xl mb-4">🪝</div>
+                <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-4">AI Hook Generator</h1>
+                <p class="text-lg text-gray-400 max-w-2xl mx-auto">Create irresistible video intros that grab attention
+                    in the first 5 seconds.</p>
             </section>
             <section class="card rounded-2xl p-8 shadow-2xl mb-8">
                 <div class="space-y-6">
                     <div>
-                        <label for="nicheInput" class="block text-sm font-semibold text-gray-300 mb-2">Your Niche /
+                        <label for="topicInput" class="block text-sm font-semibold text-gray-300 mb-2">Video
                             Topic</label>
-                        <input type="text" id="nicheInput" placeholder="e.g., Tech Reviews, Cooking, Gaming"
+                        <input type="text" id="topicInput" placeholder="e.g., Why 99% of YouTubers fail"
                             class="input-focus w-full bg-gray-900/80 border border-gray-700 rounded-xl p-4 text-gray-200 placeholder-gray-500 outline-none text-lg">
                     </div>
-                    <button id="generateBtn" onclick="generate()"
+                    <div>
+                        <label for="toneSelect" class="block text-sm font-semibold text-gray-300 mb-2">Hook
+                            Style</label>
+                        <select id="toneSelect"
+                            class="input-focus w-full bg-gray-900/80 border border-gray-700 rounded-xl p-4 text-gray-200 outline-none cursor-pointer">
+                            <option value="Shocking & Curiosity-driven">😱 Shocking & Curiosity</option>
+                            <option value="Story-based & Emotional">📖 Story-based & Emotional</option>
+                            <option value="Question-based & Engaging" selected>❓ Question-based</option>
+                            <option value="Statistical & Data-driven">📊 Data-driven</option>
+                            <option value="Controversial & Bold">🔥 Controversial & Bold</option>
+                        </select>
+                    </div>
+                    <button id="generateBtn" onclick="generateHooks()"
                         class="animated-button w-full text-white font-bold py-4 rounded-xl text-lg flex items-center justify-center gap-3">
-                        <span id="btnIcon">⚡</span><span id="btnText">Generate Names</span>
+                        <span id="btnIcon">🪝</span><span id="btnText">Generate Viral Hooks</span>
                     </button>
                 </div>
             </section>
             <section id="loadingSection" class="hidden">
                 <div class="space-y-3">
-                    <div class="skeleton h-14 w-full"></div>
-                    <div class="skeleton h-14 w-full"></div>
-                    <div class="skeleton h-14 w-full"></div>
-                    <div class="skeleton h-14 w-3/4"></div>
+                    <div class="skeleton h-16 w-full"></div>
+                    <div class="skeleton h-16 w-full"></div>
+                    <div class="skeleton h-16 w-full"></div>
+                    <div class="skeleton h-16 w-3/4"></div>
+                    <div class="skeleton h-16 w-5/6"></div>
                 </div>
             </section>
             <section id="resultsSection" class="hidden">
                 <div class="flex items-center justify-between mb-4">
-                    <h2 class="text-xl font-bold text-white">🎯 Channel Name Ideas</h2>
+                    <h2 class="text-xl font-bold text-white">🪝 Generated Hooks</h2>
                     <button onclick="copyAll()"
-                        class="text-sm text-purple-400 hover:text-purple-300 font-medium px-3 py-1 rounded-lg hover:bg-purple-500/10">📋
-                        Copy All</button>
+                        class="text-sm text-purple-400 hover:text-purple-300 font-medium px-3 py-1 rounded-lg hover:bg-purple-500/10">Copy
+                        All</button>
                 </div>
                 <div id="resultsContainer" class="space-y-3"></div>
             </section>
@@ -184,35 +224,35 @@
 
 {% block scripts %}
 <script>
-        let names = [];
-        async function generate() {
-            const niche = document.getElementById('nicheInput').value.trim();
-            if (!niche) { document.getElementById('errorMsg').textContent = 'Enter a niche!'; document.getElementById('errorSection').classList.remove('hidden'); return; }
+        let hooks = [];
+        async function generateHooks() {
+            const topic = document.getElementById('topicInput').value.trim();
+            if (!topic) { document.getElementById('errorMsg').textContent = 'Enter a topic!'; document.getElementById('errorSection').classList.remove('hidden'); return; }
+            const tone = document.getElementById('toneSelect').value;
             const btn = document.getElementById('generateBtn'); btn.disabled = true;
             document.getElementById('btnText').textContent = 'Generating...'; document.getElementById('btnIcon').textContent = '⏳';
             document.getElementById('resultsSection').classList.add('hidden'); document.getElementById('errorSection').classList.add('hidden'); document.getElementById('loadingSection').classList.remove('hidden');
             try {
-                const r = await fetch('/generate_channel_name', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ niche }) });
+                const r = await fetch('/generate_hooks', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ topic, tone }) });
                 const d = await r.json();
                 if (d.error) { document.getElementById('errorMsg').textContent = d.error; document.getElementById('errorSection').classList.remove('hidden'); return; }
-                names = d.names.split('\n').filter(t => t.trim());
-                const c = document.getElementById('resultsContainer'); c.innerHTML = '';
-                names.forEach((name, i) => {
-                    const clean = name.replace(/^\d+[\.\)\-]\s*/, '').replace(/^\*+|\*+$/g, '').trim();
+                hooks = d.hooks.split('\n').filter(t => t.trim());
+                const container = document.getElementById('resultsContainer'); container.innerHTML = '';
+                hooks.forEach(h => {
+                    const clean = h.replace(/^\d+[.\-)\s]*/, '').replace(/^\*+|\*+$/g, '').trim();
                     if (!clean) return;
                     const div = document.createElement('div');
-                    div.className = 'result-item card rounded-xl p-4 flex items-center justify-between gap-4 hover:border-purple-500/30 transition-all';
-                    div.style.animationDelay = `${i * 0.1}s`;
-                    div.innerHTML = `<p class="text-gray-200 text-lg flex-grow font-medium">${clean}</p><button onclick="copyOne(this,'${clean.replace(/'/g, "\\'")}')" class="copy-btn flex-shrink-0 border border-gray-600 text-gray-400 hover:text-white px-3 py-2 rounded-lg text-sm transition-all">📋 Copy</button>`;
-                    c.appendChild(div);
+                    div.className = 'result-fade card rounded-xl p-4 flex items-center justify-between gap-4 hover:border-purple-500/30 transition-all';
+                    div.innerHTML = `<p class="text-gray-200 text-lg flex-grow">${clean}</p><button onclick="copyOne(this,'${clean.replace(/'/g, "\\'")}')" class="copy-btn flex-shrink-0 border border-gray-600 text-gray-400 hover:text-white px-3 py-2 rounded-lg text-sm transition-all">📋 Copy</button>`;
+                    container.appendChild(div);
                 });
                 document.getElementById('resultsSection').classList.remove('hidden');
             } catch (e) { document.getElementById('errorMsg').textContent = 'Network error.'; document.getElementById('errorSection').classList.remove('hidden'); }
-            finally { btn.disabled = false; document.getElementById('btnText').textContent = 'Generate Names'; document.getElementById('btnIcon').textContent = '⚡'; document.getElementById('loadingSection').classList.add('hidden'); }
+            finally { btn.disabled = false; document.getElementById('btnText').textContent = 'Generate Viral Hooks'; document.getElementById('btnIcon').textContent = '🪝'; document.getElementById('loadingSection').classList.add('hidden'); }
         }
         function copyOne(btn, text) { navigator.clipboard.writeText(text); btn.innerHTML = '✅ Copied'; btn.classList.add('copied'); showToast(); setTimeout(() => { btn.innerHTML = '📋 Copy'; btn.classList.remove('copied'); }, 2000); }
-        function copyAll() { const all = names.map(n => n.replace(/^\d+[\.\)\-]\s*/, '').replace(/^\*+|\*+$/g, '').trim()).filter(t => t).join('\n'); navigator.clipboard.writeText(all); showToast(); }
+        function copyAll() { const all = hooks.map(h => h.replace(/^\d+[.\-)\s]*/, '').replace(/^\*+|\*+$/g, '').trim()).filter(t => t).join('\n'); navigator.clipboard.writeText(all); showToast(); }
         function showToast() { const t = document.getElementById('toast'); t.style.bottom = '30px'; setTimeout(() => { t.style.bottom = '-100px'; }, 2000); }
-        document.getElementById('nicheInput').addEventListener('keypress', e => { if (e.key === 'Enter') generate(); });
+        document.getElementById('topicInput').addEventListener('keypress', e => { if (e.key === 'Enter') generateHooks(); });
     </script>
 {% endblock %}

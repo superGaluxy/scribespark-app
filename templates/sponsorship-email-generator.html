@@ -1,0 +1,140 @@
+{% extends "layout.html" %}
+
+{% block title %}Free AI Sponsorship Email Generator - Pitch Brands Effectively | ScribeSpark{% endblock %}
+
+{% block meta %}
+<meta name="description"
+    content="Generate professional sponsorship pitch emails to brands using AI. Get more brand deals with ScribeSpark's free sponsorship email generator.">
+<meta name="keywords"
+    content="sponsorship email generator, brand deal pitch, youtube sponsorship, AI email writer, creator sponsorship tool, cold outreach email">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://scribespark.online/sponsorship-email-generator">
+{% endblock %}
+
+{% block styles %}
+<style>
+    .result-text {
+        white-space: pre-wrap;
+        line-height: 1.6;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<section class="text-center mb-10">
+    <div class="text-5xl mb-4">📧</div>
+    <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-4">Sponsorship Email Generator</h1>
+    <p class="text-lg text-gray-400 max-w-2xl mx-auto">Create professional, persuasive cold outreach emails to land more
+        brand deals.</p>
+</section>
+
+<section class="card rounded-2xl p-8 shadow-2xl mb-8">
+    <div class="space-y-6">
+        <div>
+            <label for="brandInput" class="block text-sm font-semibold text-gray-300 mb-2">Brand Name</label>
+            <input type="text" id="brandInput" placeholder="e.g., Nike, NordVPN, Skillshare"
+                class="input-focus w-full bg-gray-900/80 border border-gray-700 rounded-xl p-4 text-gray-200 placeholder-gray-500 outline-none text-lg">
+        </div>
+        <div>
+            <label for="nicheInput" class="block text-sm font-semibold text-gray-300 mb-2">Your Channel Niche</label>
+            <input type="text" id="nicheInput" placeholder="e.g., Tech Reviews, Fitness, Gaming"
+                class="input-focus w-full bg-gray-900/80 border border-gray-700 rounded-xl p-4 text-gray-200 placeholder-gray-500 outline-none text-lg">
+        </div>
+        <button id="generateBtn" onclick="generateEmail()"
+            class="animated-button w-full text-white font-bold py-4 rounded-xl text-lg flex items-center justify-center gap-3">
+            <span id="btnIcon">✨</span><span id="btnText">Generate Email</span>
+        </button>
+    </div>
+</section>
+
+<section id="loadingSection" class="hidden">
+    <div class="space-y-3">
+        <div class="skeleton h-6 w-full"></div>
+        <div class="skeleton h-6 w-5/6"></div>
+        <div class="skeleton h-6 w-full"></div>
+        <div class="skeleton h-6 w-4/6"></div>
+    </div>
+</section>
+
+<section id="resultsSection" class="hidden">
+    <div class="flex items-center justify-between mb-4">
+        <h2 class="text-xl font-bold text-white">📧 Your Pitch Email</h2>
+        <button onclick="copyResult()"
+            class="text-sm text-purple-400 hover:text-purple-300 font-medium px-3 py-1 rounded-lg hover:bg-purple-500/10">📋
+            Copy</button>
+    </div>
+    <div class="card rounded-2xl p-6">
+        <div id="resultText" class="result-text text-gray-300"></div>
+    </div>
+</section>
+
+<section id="errorSection" class="hidden card rounded-2xl p-6 border-red-500/30">
+    <p class="text-red-400 font-medium" id="errorMsg"></p>
+</section>
+
+<div id="toast"
+    class="fixed bottom-[-100px] left-1/2 -translate-x-1/2 bg-purple-600 text-white py-2 px-5 rounded-lg z-50 font-medium transition-all duration-500">
+    Copied!</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    let generatedEmail = '';
+    async function generateEmail() {
+        const brand_name = document.getElementById('brandInput').value.trim();
+        const niche = document.getElementById('nicheInput').value.trim();
+
+        if (!brand_name || !niche) {
+            document.getElementById('errorMsg').textContent = 'Please enter both Brand Name and Niche!';
+            document.getElementById('errorSection').classList.remove('hidden');
+            return;
+        }
+
+        const btn = document.getElementById('generateBtn');
+        btn.disabled = true;
+        document.getElementById('btnText').textContent = 'Writing...';
+        document.getElementById('btnIcon').textContent = '⏳';
+        document.getElementById('resultsSection').classList.add('hidden');
+        document.getElementById('errorSection').classList.add('hidden');
+        document.getElementById('loadingSection').classList.remove('hidden');
+
+        try {
+            const r = await fetch('/generate_sponsorship_email', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ brand_name, niche })
+            });
+            const d = await r.json();
+
+            if (d.error) {
+                document.getElementById('errorMsg').textContent = d.error;
+                document.getElementById('errorSection').classList.remove('hidden');
+                return;
+            }
+
+            generatedEmail = d.email;
+            document.getElementById('resultText').innerHTML = generatedEmail
+                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                .replace(/\n/g, '<br>');
+            document.getElementById('resultsSection').classList.remove('hidden');
+        } catch (e) {
+            document.getElementById('errorMsg').textContent = 'Network or API error.';
+            document.getElementById('errorSection').classList.remove('hidden');
+        } finally {
+            btn.disabled = false;
+            document.getElementById('btnText').textContent = 'Generate Email';
+            document.getElementById('btnIcon').textContent = '✨';
+            document.getElementById('loadingSection').classList.add('hidden');
+        }
+    }
+
+    function copyResult() {
+        navigator.clipboard.writeText(generatedEmail);
+        const t = document.getElementById('toast');
+        t.style.bottom = '30px';
+        setTimeout(() => { t.style.bottom = '-100px'; }, 2000);
+    }
+
+    document.getElementById('nicheInput').addEventListener('keypress', e => { if (e.key === 'Enter') generateEmail(); });
+</script>
+{% endblock %}

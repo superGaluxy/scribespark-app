@@ -1,92 +1,173 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog - ScribeSpark</title>
-    <meta name="description" content="ScribeSpark Blog - Tips, tricks, and strategies to help you grow your YouTube channel and master the art of content creation.">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖋️</text></svg>">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        @keyframes move-background { from { background-position: 0% 50%; } to { background-position: 100% 50%; } }
-        body { font-family: 'Inter', sans-serif; background-color: #000000; color: #E5E7EB; overflow-x: hidden; }
-        .aurora-background { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at 10% 20%, rgba(138, 43, 226, 0.2), transparent 40%), radial-gradient(circle at 80% 90%, rgba(75, 0, 130, 0.2), transparent 40%); z-index: -2; }
-        .particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: url('https://www.transparenttextures.com/patterns/stardust.png'); animation: move-background 120s linear infinite; z-index: -1; }
-        .logo-font { font-family: 'Playfair Display', serif; }
-        .gradient-text { background: linear-gradient(to right, #A78BFA, #F472B6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .content-wrapper { position: relative; z-index: 10; }
-        .card { background-color: rgba(17, 24, 39, 0.6); backdrop-filter: blur(16px); border: 1px solid rgba(55, 65, 81, 0.5); }
-        .footer-link, .nav-link { transition: color 0.3s; }
-        .footer-link:hover, .nav-link:hover { color: #A78BFA; }
-        .prose h2 { color: #fff; font-weight: 700; margin-bottom: 0.75rem; margin-top: 2rem; font-size: 1.875rem; }
-        .prose p { color: #d1d5db; margin-bottom: 1.25rem; line-height: 1.75; }
-        .prose strong { color: #A78BFA; }
-        .ad-container { min-height: 100px; max-height: 280px; }
-    </style>
-</head>
-<body>
-    <div class="aurora-background"></div>
-    <div class="particles"></div>
-    <div class="content-wrapper container mx-auto px-4 py-8 max-w-4xl min-h-screen flex flex-col">
-        <header class="flex justify-between items-center mb-16 md:mb-24">
-             <a href="/" class="flex items-center space-x-2 text-3xl font-bold logo-font text-white">
-                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-purple-400"><path d="M22 18.5a2.5 2.5 0 0 1-4 0"/><path d="m14 14-2.5 2.5a2.83 2.83 0 1 0 4 4L20 16"/><path d="M14 14l4-4"/><path d="M12 6c1.5 2 3 2 4 0"/><path d="M12 6c-1.5 2-3 2-4 0"/><path d="M4 14a2.83 2.83 0 1 0 4 4L12 14"/></svg>
-                <span>ScribeSpark</span>
-            </a>
-            <nav class="hidden md:flex space-x-6 text-gray-400 font-medium">
-                <a href="/" class="nav-link">Home</a>
-                <a href="/#faq" class="nav-link">FAQs</a>
-                <a href="/blog" class="nav-link">Blog</a>
-                <a href="/about" class="nav-link">About</a>
-                <a href="/contact" class="nav-link">Contact</a>
-            </nav>
-        </header>
+{% extends "layout.html" %}
 
-        <main class="flex-grow">
-            <section class="text-center mb-16">
-                 <h1 class="text-4xl md:text-6xl font-extrabold mb-4 text-white leading-tight">The ScribeSpark Blog</h1>
-                 <p class="text-lg text-gray-400 max-w-3xl mx-auto">Tips, tricks, and AI-powered strategies to help you grow your YouTube channel.</p>
+{% block title %}YouTube Creator Blog - Tips, Tricks & Growth Strategies | ScribeSpark{% endblock %}
+
+{% block meta %}
+    <meta name="description"
+        content="Learn proven YouTube growth strategies, SEO tips, thumbnail design secrets & content creation tricks. Free creator blog with expert advice for YouTubers 2025.">
+    <meta name="keywords"
+        content="YouTube tips, YouTube growth strategies, creator blog, YouTube SEO tips, thumbnail design tips, YouTube content creation, YouTube success tips, creator advice, YouTube growth hacks">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://scribespark.online/blog">
+{% endblock %}
+
+{% block styles %}
+<style>
+@keyframes move-background {
+            from {
+                background-position: 0% 50%;
+            }
+
+            to {
+                background-position: 100% 50%;
+            }
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #000;
+            color: #E5E7EB;
+        }
+
+        .aurora-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 10% 20%, rgba(138, 43, 226, 0.2), transparent 40%), radial-gradient(circle at 80% 90%, rgba(75, 0, 130, 0.2), transparent 40%);
+            z-index: -2;
+        }
+
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
+            animation: move-background 120s linear infinite;
+            z-index: -1;
+        }
+
+        .logo-font {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .gradient-text {
+            background: linear-gradient(to right, #A78BFA, #F472B6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .card {
+            background: rgba(17, 24, 39, 0.6);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(55, 65, 81, 0.5);
+            transition: all 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 30px rgba(167, 139, 250, 0.1);
+            border-color: rgba(167, 139, 250, 0.3);
+        }
+
+        .tag {
+            background: rgba(139, 92, 246, 0.15);
+            color: #A78BFA;
+        }
+</style>
+{% endblock %}
+
+{% block content %}
+    
+    <section class="text-center mb-12">
+                <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-4">Creator Blog</h1>
+                <p class="text-lg text-gray-400 max-w-2xl mx-auto">Tips, tricks, and strategies to grow your YouTube
+                    channel like a pro.</p>
             </section>
-            
-            <section class="card rounded-2xl p-8 md:p-12 shadow-2xl prose max-w-none">
-                 <h1 class="text-3xl font-bold text-white mb-6 !mt-0">The First 5 Seconds: Why Your YouTube Hook is Everything</h1>
-                 <p class="text-gray-500">Published on: September 13, 2025</p>
-                
-                 <h2>The Brutal Truth of YouTube</h2>
-                 <p>You've spent hours, maybe even days, researching, scripting, shooting, and editing your latest masterpiece. You upload it, hit publish, and wait for the views to roll in. But they don't. Why? The brutal truth is, you lost your audience before they even gave you a chance. You lost them in the first 5 seconds.</p>
-
-                 <h2>What is a "Hook"?</h2>
-                 <p>A YouTube hook is the first few seconds of your video designed to do one thing: <strong>stop the scroll</strong>. It's a verbal or visual promise you make to the viewer, assuring them that sticking around will be worth their time. It needs to be intriguing, create curiosity, or present a problem that the viewer desperately wants solved.</p>
-
-                 <h2>Why is it SO Important?</h2>
-                 <p>The YouTube algorithm is obsessed with one thing above all else: <strong>Audience Retention</strong>. If viewers click away from your video in the first few seconds, YouTube gets a powerful signal that your content isn't engaging. As a result, it will stop recommending your video to new audiences. A strong hook leads to higher retention, which tells the algorithm your video is valuable, leading to more impressions and views. It's a powerful feedback loop.</p>
-
-                 <h2>How Our AI Can Help</h2>
-                 <p>Crafting the perfect hook is an art, but it's also a science. That's where tools like our own <strong>ScribeSpark AI Hook Generator</strong> come in. By analyzing patterns from millions of successful videos, AI can generate a variety of proven hook formulas tailored to your specific video topic. It can help you find that perfect opening line that creates mystery, poses a shocking question, or makes a bold promise. Don't leave your video's success to chance. <strong>Start with a powerful hook, and you've already won half the battle.</strong></p>
-            </section>
-            
-            
-        </main>
-
-        <footer class="text-center border-t border-gray-800 pt-8 mt-16">
-            <div class="flex justify-center space-x-6 mb-4 text-gray-400">
-                <a href="/about" class="footer-link">About Us</a>
-                <a href="/privacy" class="footer-link">Privacy Policy</a>
-                <a href="/contact" class="footer-link">Contact</a>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <article class="card rounded-2xl overflow-hidden">
+                    <div
+                        class="h-48 bg-gradient-to-br from-purple-600 to-pink-500 flex items-center justify-center text-6xl">
+                        🚀</div>
+                    <div class="p-6">
+                        <span class="tag text-xs font-semibold px-3 py-1 rounded-full">Growth</span>
+                        <h2 class="text-xl font-bold text-white mt-3 mb-2">10 Proven Ways to Grow Your YouTube Channel
+                            in 2025</h2>
+                        <p class="text-gray-400 text-sm mb-4">Discover the strategies that top creators use to grow
+                            their audience fast and build a sustainable channel.</p>
+                        <p class="text-gray-600 text-xs">Jan 15, 2025 · 8 min read</p>
+                    </div>
+                </article>
+                <article class="card rounded-2xl overflow-hidden">
+                    <div
+                        class="h-48 bg-gradient-to-br from-blue-600 to-cyan-500 flex items-center justify-center text-6xl">
+                        🎨</div>
+                    <div class="p-6">
+                        <span class="tag text-xs font-semibold px-3 py-1 rounded-full">Design</span>
+                        <h2 class="text-xl font-bold text-white mt-3 mb-2">How to Create Thumbnails That Get Clicks</h2>
+                        <p class="text-gray-400 text-sm mb-4">Learn the psychology behind high-CTR thumbnails and design
+                            techniques used by MrBeast's team.</p>
+                        <p class="text-gray-600 text-xs">Jan 10, 2025 · 6 min read</p>
+                    </div>
+                </article>
+                <article class="card rounded-2xl overflow-hidden">
+                    <div
+                        class="h-48 bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center text-6xl">
+                        ✍️</div>
+                    <div class="p-6">
+                        <span class="tag text-xs font-semibold px-3 py-1 rounded-full">SEO</span>
+                        <h2 class="text-xl font-bold text-white mt-3 mb-2">YouTube SEO: The Complete Guide for Beginners
+                        </h2>
+                        <p class="text-gray-400 text-sm mb-4">Master titles, descriptions, tags, and more to rank your
+                            videos #1 on YouTube search results.</p>
+                        <p class="text-gray-600 text-xs">Jan 5, 2025 · 10 min read</p>
+                    </div>
+                </article>
+                <article class="card rounded-2xl overflow-hidden">
+                    <div
+                        class="h-48 bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center text-6xl">
+                        📝</div>
+                    <div class="p-6">
+                        <span class="tag text-xs font-semibold px-3 py-1 rounded-full">Scripting</span>
+                        <h2 class="text-xl font-bold text-white mt-3 mb-2">How to Write YouTube Scripts That Keep
+                            Viewers Watching</h2>
+                        <p class="text-gray-400 text-sm mb-4">The secret formula to scripting videos that maintain
+                            audience retention from start to finish.</p>
+                        <p class="text-gray-600 text-xs">Dec 28, 2024 · 7 min read</p>
+                    </div>
+                </article>
+                <article class="card rounded-2xl overflow-hidden">
+                    <div
+                        class="h-48 bg-gradient-to-br from-red-500 to-rose-600 flex items-center justify-center text-6xl">
+                        🎯</div>
+                    <div class="p-6">
+                        <span class="tag text-xs font-semibold px-3 py-1 rounded-full">Strategy</span>
+                        <h2 class="text-xl font-bold text-white mt-3 mb-2">Finding Your Niche: A Creator's Guide</h2>
+                        <p class="text-gray-400 text-sm mb-4">How to pick the perfect niche that aligns with your
+                            passion and has high growth potential.</p>
+                        <p class="text-gray-600 text-xs">Dec 20, 2024 · 5 min read</p>
+                    </div>
+                </article>
+                <article class="card rounded-2xl overflow-hidden">
+                    <div
+                        class="h-48 bg-gradient-to-br from-violet-600 to-indigo-600 flex items-center justify-center text-6xl">
+                        💰</div>
+                    <div class="p-6">
+                        <span class="tag text-xs font-semibold px-3 py-1 rounded-full">Monetization</span>
+                        <h2 class="text-xl font-bold text-white mt-3 mb-2">YouTube Monetization: Beyond AdSense Revenue
+                        </h2>
+                        <p class="text-gray-400 text-sm mb-4">Explore sponsorships, merchandise, memberships, and other
+                            income streams for content creators.</p>
+                        <p class="text-gray-600 text-xs">Dec 15, 2024 · 9 min read</p>
+                    </div>
+                </article>
             </div>
-            <p class="text-gray-600">&copy; 2025 ScribeSpark. Your Ultimate AI Creator Suite.</p>
-            <div class="mt-6">
-                <h4 class="text-lg font-semibold text-white mb-2">Our Other Projects</h4>
-                <div class="flex justify-center space-x-6 text-gray-400">
-                    <a href="https://toolify.66ghz.com" target="_blank" class="footer-link">Toolify</a>
-                    <a href="https://www.linkdart.online" target="_blank" class="footer-link">LinkDart</a>
-                </div>
-            </div>
-        </footer>
-    </div>
-</body>
-</html>
+{% endblock %}
 
+{% block scripts %}
+
+{% endblock %}

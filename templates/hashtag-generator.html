@@ -1,57 +1,46 @@
 {% extends "layout.html" %}
 
-{% block title %}Free YouTube Tag Generator - SEO Tags for More Views | ScribeSpark{% endblock %}
+{% block title %}Free YouTube Hashtag Generator - Trending Hashtags for Videos | ScribeSpark{% endblock %}
 
 {% block meta %}
     <meta name="description"
-        content="Generate high-ranking YouTube tags instantly with AI. Free tag generator tool - find the best SEO tags to boost video discoverability, views & rankings. Best YouTube tag tool 2025.">
+        content="Generate trending YouTube hashtags instantly with AI. Free hashtag generator - find the best hashtags for YouTube Shorts, videos & reels to boost reach & visibility. Best hashtag tool 2025.">
     <meta name="keywords"
-        content="YouTube tag generator, video tags generator, YouTube SEO tags, free tag generator, YouTube keyword tool, video tag finder, YouTube tags for views, best YouTube tags">
+        content="YouTube hashtag generator, trending hashtags, YouTube Shorts hashtags, video hashtags, free hashtag generator, YouTube hashtag finder, best YouTube hashtags, hashtag ideas, viral hashtags">
     <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://scribespark.online/tag-generator">
+    <link rel="canonical" href="https://scribespark.online/hashtag-generator">
 {% endblock %}
 
 {% block styles %}
 <style>
-@keyframes move-background {
             from {
                 background-position: 0% 50%;
             }
-
             to {
                 background-position: 100% 50%;
             }
         }
-
-        @keyframes pop {
-            0% {
-                transform: scale(0.8);
+        @keyframes fadeInUp {
+            from {
                 opacity: 0;
+                transform: translateY(20px);
             }
-
-            100% {
-                transform: scale(1);
+            to {
                 opacity: 1;
+                transform: translateY(0);
             }
         }
-
         @keyframes shimmer {
             0% {
                 background-position: -200% 0;
             }
-
             100% {
                 background-position: 200% 0;
             }
         }
-
-        body {
-            font-family: 'Inter', sans-serif;
             background-color: #000;
             color: #E5E7EB;
         }
-
-        .aurora-bg {
             position: fixed;
             top: 0;
             left: 0;
@@ -60,8 +49,6 @@
             background: radial-gradient(circle at 10% 20%, rgba(138, 43, 226, 0.2), transparent 40%), radial-gradient(circle at 80% 90%, rgba(75, 0, 130, 0.2), transparent 40%);
             z-index: -2;
         }
-
-        .particles {
             position: fixed;
             top: 0;
             left: 0;
@@ -71,63 +58,46 @@
             animation: move-background 120s linear infinite;
             z-index: -1;
         }
-
-        .logo-font {
-            font-family: 'Playfair Display', serif;
         }
-
-        .gradient-text {
             background: linear-gradient(to right, #A78BFA, #F472B6);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-
-        .card {
             background: rgba(17, 24, 39, 0.6);
             backdrop-filter: blur(16px);
             border: 1px solid rgba(55, 65, 81, 0.5);
         }
-
-        .animated-button {
             background-size: 200% auto;
             background-image: linear-gradient(to right, #8B5CF6 0%, #EC4899 51%, #8B5CF6 100%);
             transition: background-position 0.5s;
         }
-
-        .animated-button:hover {
             background-position: right center;
         }
-
-        .animated-button:disabled {
             opacity: 0.5;
             cursor: not-allowed;
         }
-
         .skeleton {
             background: linear-gradient(90deg, rgba(55, 65, 81, 0.3) 25%, rgba(55, 65, 81, 0.5) 50%, rgba(55, 65, 81, 0.3) 75%);
             background-size: 200% 100%;
             animation: shimmer 1.5s infinite;
             border-radius: 8px;
         }
-
-        .input-focus:focus {
             box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.3);
             border-color: #8B5CF6;
         }
-
         .tag-chip {
-            animation: pop 0.3s ease forwards;
             cursor: pointer;
-            transition: all 0.2s;
+            transition: all 0.3s;
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            background: rgba(139, 92, 246, 0.1);
+            animation: fadeInUp 0.4s ease forwards;
+            opacity: 0;
         }
-
         .tag-chip:hover {
-            background: rgba(139, 92, 246, 0.3);
-            border-color: #8B5CF6;
+            background: rgba(139, 92, 246, 0.25);
             transform: scale(1.05);
         }
-
         #toast {
             transition: all 0.5s;
         }
@@ -135,51 +105,41 @@
 {% endblock %}
 
 {% block content %}
-    <div id="toast"
-        class="fixed bottom-[-100px] left-1/2 -translate-x-1/2 bg-purple-600 text-white py-2 px-5 rounded-lg z-50 font-medium">
-        Copied!</div>
     <section class="text-center mb-10">
-                <div class="text-5xl mb-4">🏷️</div>
-                <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-4">Tag Generator</h1>
-                <p class="text-lg text-gray-400 max-w-2xl mx-auto">Find the best YouTube tags to boost your video's
-                    discoverability.</p>
+                <div class="text-5xl mb-4">#️⃣</div>
+                <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-4">Hashtag Generator</h1>
+                <p class="text-lg text-gray-400 max-w-2xl mx-auto">Find the best trending hashtags for your YouTube
+                    videos and Shorts.</p>
             </section>
             <section class="card rounded-2xl p-8 shadow-2xl mb-8">
                 <div class="space-y-6">
                     <div>
                         <label for="topicInput" class="block text-sm font-semibold text-gray-300 mb-2">Video
                             Topic</label>
-                        <input type="text" id="topicInput" placeholder="e.g., iPhone 16 Review"
+                        <input type="text" id="topicInput" placeholder="e.g., Morning routine, Gaming setup, AI tools"
                             class="input-focus w-full bg-gray-900/80 border border-gray-700 rounded-xl p-4 text-gray-200 placeholder-gray-500 outline-none text-lg">
                     </div>
                     <button id="generateBtn" onclick="generate()"
                         class="animated-button w-full text-white font-bold py-4 rounded-xl text-lg flex items-center justify-center gap-3">
-                        <span id="btnIcon">⚡</span><span id="btnText">Generate Tags</span>
+                        <span id="btnIcon">#️⃣</span><span id="btnText">Generate Hashtags</span>
                     </button>
                 </div>
             </section>
             <section id="loadingSection" class="hidden">
-                <div class="flex flex-wrap gap-3">
-                    <div class="skeleton h-10 w-28"></div>
-                    <div class="skeleton h-10 w-36"></div>
-                    <div class="skeleton h-10 w-24"></div>
-                    <div class="skeleton h-10 w-32"></div>
-                    <div class="skeleton h-10 w-40"></div>
-                    <div class="skeleton h-10 w-28"></div>
+                <div class="space-y-3">
+                    <div class="skeleton h-6 w-full"></div>
+                    <div class="skeleton h-6 w-5/6"></div>
+                    <div class="skeleton h-6 w-full"></div>
                 </div>
             </section>
             <section id="resultsSection" class="hidden">
                 <div class="flex items-center justify-between mb-4">
-                    <h2 class="text-xl font-bold text-white">🎯 Tags <span id="tagCount" class="gradient-text"></span>
-                    </h2>
+                    <h2 class="text-xl font-bold text-white">#️⃣ Your Hashtags</h2>
                     <button onclick="copyAll()"
                         class="text-sm text-purple-400 hover:text-purple-300 font-medium px-3 py-1 rounded-lg hover:bg-purple-500/10">📋
                         Copy All</button>
                 </div>
-                <div class="card rounded-2xl p-6">
-                    <div id="tagsContainer" class="flex flex-wrap gap-3"></div>
-                </div>
-                <p class="text-gray-500 text-sm mt-3 text-center">Click any tag to copy it</p>
+                <div id="tagsContainer" class="flex flex-wrap gap-3 card rounded-2xl p-6"></div>
             </section>
             <section id="errorSection" class="hidden card rounded-2xl p-6 border-red-500/30">
                 <p class="text-red-400 font-medium" id="errorMsg"></p>
@@ -188,26 +148,34 @@
 
 {% block scripts %}
 <script>
-        let allTags = [];
+        let allHashtags = [];
         async function generate() {
             const topic = document.getElementById('topicInput').value.trim();
             if (!topic) { document.getElementById('errorMsg').textContent = 'Enter a topic!'; document.getElementById('errorSection').classList.remove('hidden'); return; }
             const btn = document.getElementById('generateBtn'); btn.disabled = true;
-            document.getElementById('btnText').textContent = 'Generating...'; document.getElementById('btnIcon').textContent = '⏳';
+            document.getElementById('btnText').textContent = 'Finding...'; document.getElementById('btnIcon').textContent = '⏳';
             document.getElementById('resultsSection').classList.add('hidden'); document.getElementById('errorSection').classList.add('hidden'); document.getElementById('loadingSection').classList.remove('hidden');
             try {
-                const r = await fetch('/generate_tags', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ topic }) });
+                const r = await fetch('/generate_hashtags', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ topic }) });
                 const d = await r.json();
                 if (d.error) { document.getElementById('errorMsg').textContent = d.error; document.getElementById('errorSection').classList.remove('hidden'); return; }
-                allTags = d.tags.split(',').map(t => t.trim()).filter(t => t);
-                const c = document.getElementById('tagsContainer'); c.innerHTML = '';
-                document.getElementById('tagCount').textContent = `(${allTags.length})`;
-                allTags.forEach((tag, i) => { const s = document.createElement('span'); s.className = 'tag-chip inline-block bg-gray-800/70 border border-gray-600 text-gray-300 px-4 py-2 rounded-full text-sm font-medium'; s.style.animationDelay = `${i * 0.05}s`; s.textContent = tag; s.onclick = () => { navigator.clipboard.writeText(tag); showToast(); }; c.appendChild(s); });
+                allHashtags = d.hashtags.split(/[\n,]+/).map(t => t.trim()).filter(t => t);
+                const container = document.getElementById('tagsContainer'); container.innerHTML = '';
+                allHashtags.forEach((tag, i) => {
+                    const clean = tag.startsWith('#') ? tag : '#' + tag.replace(/^#+/, '');
+                    allHashtags[i] = clean;
+                    const span = document.createElement('span');
+                    span.className = 'tag-chip px-4 py-2 rounded-full text-purple-300 font-medium text-sm';
+                    span.style.animationDelay = `${i * 0.05}s`;
+                    span.textContent = clean;
+                    span.onclick = () => { navigator.clipboard.writeText(clean); showToast(); };
+                    container.appendChild(span);
+                });
                 document.getElementById('resultsSection').classList.remove('hidden');
             } catch (e) { document.getElementById('errorMsg').textContent = 'Network error.'; document.getElementById('errorSection').classList.remove('hidden'); }
-            finally { btn.disabled = false; document.getElementById('btnText').textContent = 'Generate Tags'; document.getElementById('btnIcon').textContent = '⚡'; document.getElementById('loadingSection').classList.add('hidden'); }
+            finally { btn.disabled = false; document.getElementById('btnText').textContent = 'Generate Hashtags'; document.getElementById('btnIcon').textContent = '#️⃣'; document.getElementById('loadingSection').classList.add('hidden'); }
         }
-        function copyAll() { navigator.clipboard.writeText(allTags.join(', ')); showToast(); }
+        function copyAll() { navigator.clipboard.writeText(allHashtags.join(' ')); showToast(); }
         function showToast() { const t = document.getElementById('toast'); t.style.bottom = '30px'; setTimeout(() => { t.style.bottom = '-100px'; }, 2000); }
         document.getElementById('topicInput').addEventListener('keypress', e => { if (e.key === 'Enter') generate(); });
     </script>

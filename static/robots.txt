@@ -1,1 +1,4 @@
-Allow all web crawlers to access all contentUser-agent: *Allow: /Provide sitemap locationSitemap: https://scribespark.online/sitemap.xml
+User-agent: *
+Allow: /
+
+Sitemap: https://scribespark.online/sitemap.xml

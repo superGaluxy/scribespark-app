@@ -1,14 +1,14 @@
 {% extends "layout.html" %}
 
-{% block title %}Free YouTube Thumbnail Analyzer - AI Thumbnail Review Tool | ScribeSpark{% endblock %}
+{% block title %}Free YouTube Trending Topics Finder - Discover Viral Topics | ScribeSpark{% endblock %}
 
 {% block meta %}
     <meta name="description"
-        content="Get AI-powered feedback on your YouTube thumbnails. Free thumbnail analyzer - improve CTR, click-through rate & visual appeal. Expert thumbnail analysis like MrBeast team 2025.">
+        content="Discover trending & breakout YouTube topics in your niche with AI. Free trending topics tool - find viral content ideas that are hot right now. Best trend finder 2025.">
     <meta name="keywords"
-        content="YouTube thumbnail analyzer, thumbnail review tool, thumbnail CTR checker, YouTube thumbnail feedback, thumbnail optimization, free thumbnail analysis, YouTube CTR tool, thumbnail score checker">
+        content="YouTube trending topics, trending video ideas, viral topics finder, YouTube trends, breakout topics, content trends, YouTube trend analyzer, free trending tool, hot YouTube topics">
     <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://scribespark.online/thumbnail-analyzer">
+    <link rel="canonical" href="https://scribespark.online/trending-topics">
 {% endblock %}
 
 {% block styles %}
@@ -111,6 +111,11 @@
             border-radius: 8px;
         }
 
+        .input-focus:focus {
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.3);
+            border-color: #8B5CF6;
+        }
+
         .result-fade {
             animation: fadeInUp 0.6s ease forwards;
         }
@@ -124,19 +129,21 @@
             color: #A78BFA;
         }
 
-        .drop-zone {
-            border: 2px dashed rgba(139, 92, 246, 0.4);
-            transition: all 0.3s;
-        }
-
-        .drop-zone:hover,
-        .drop-zone.dragover {
-            border-color: #8B5CF6;
-            background: rgba(139, 92, 246, 0.1);
-        }
-
         #toast {
             transition: all 0.5s;
+        }
+
+        .niche-chip {
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 1px solid rgba(55, 65, 81, 0.5);
+        }
+
+        .niche-chip:hover,
+        .niche-chip.active {
+            background: rgba(139, 92, 246, 0.2);
+            border-color: #8B5CF6;
+            color: #A78BFA;
         }
 </style>
 {% endblock %}
@@ -146,31 +153,39 @@
         class="fixed bottom-[-100px] left-1/2 -translate-x-1/2 bg-purple-600 text-white py-2 px-5 rounded-lg z-50 font-medium">
         Copied!</div>
     <section class="text-center mb-10">
-                <div class="text-5xl mb-4">🔬</div>
-                <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-4">Thumbnail Analyzer</h1>
-                <p class="text-lg text-gray-400 max-w-2xl mx-auto">Get AI-powered feedback on your thumbnails to
-                    maximize click-through rate.</p>
+                <div class="text-5xl mb-4">🚀</div>
+                <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-4">Trending Topics</h1>
+                <p class="text-lg text-gray-400 max-w-2xl mx-auto">Discover breakout topics in your niche that are
+                    trending right now.</p>
             </section>
             <section class="card rounded-2xl p-8 shadow-2xl mb-8">
                 <div class="space-y-6">
-                    <div class="drop-zone rounded-xl p-8 text-center cursor-pointer" id="dropZone"
-                        onclick="document.getElementById('fileInput').click()">
-                        <input type="file" id="fileInput" accept="image/*" class="hidden"
-                            onchange="handleFile(this.files[0])">
-                        <div id="uploadArea">
-                            <div class="text-4xl mb-3">📁</div>
-                            <p class="text-gray-300 font-medium mb-1">Drop your thumbnail here or click to upload</p>
-                            <p class="text-gray-500 text-sm">Supports PNG, JPG, WEBP (max 5MB)</p>
-                        </div>
-                        <div id="previewArea" class="hidden">
-                            <img id="previewImg" class="max-h-48 mx-auto rounded-lg mb-3" alt="preview">
-                            <p class="text-gray-400 text-sm" id="fileName"></p>
+                    <div>
+                        <label for="nicheInput" class="block text-sm font-semibold text-gray-300 mb-2">Your
+                            Niche</label>
+                        <input type="text" id="nicheInput" placeholder="e.g., AI Technology, Fitness, Travel"
+                            class="input-focus w-full bg-gray-900/80 border border-gray-700 rounded-xl p-4 text-gray-200 placeholder-gray-500 outline-none text-lg">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-300 mb-3">Quick Pick</label>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="niche-chip px-3 py-1.5 rounded-full text-sm text-gray-300 bg-gray-800/50"
+                                onclick="pick(this)">🤖 AI & Tech</span>
+                            <span class="niche-chip px-3 py-1.5 rounded-full text-sm text-gray-300 bg-gray-800/50"
+                                onclick="pick(this)">🎮 Gaming</span>
+                            <span class="niche-chip px-3 py-1.5 rounded-full text-sm text-gray-300 bg-gray-800/50"
+                                onclick="pick(this)">💪 Fitness</span>
+                            <span class="niche-chip px-3 py-1.5 rounded-full text-sm text-gray-300 bg-gray-800/50"
+                                onclick="pick(this)">📈 Finance</span>
+                            <span class="niche-chip px-3 py-1.5 rounded-full text-sm text-gray-300 bg-gray-800/50"
+                                onclick="pick(this)">🍳 Food</span>
+                            <span class="niche-chip px-3 py-1.5 rounded-full text-sm text-gray-300 bg-gray-800/50"
+                                onclick="pick(this)">✈️ Travel</span>
                         </div>
                     </div>
-                    <button id="generateBtn" onclick="analyze()"
-                        class="animated-button w-full text-white font-bold py-4 rounded-xl text-lg flex items-center justify-center gap-3"
-                        disabled>
-                        <span id="btnIcon">🔬</span><span id="btnText">Analyze Thumbnail</span>
+                    <button id="generateBtn" onclick="generate()"
+                        class="animated-button w-full text-white font-bold py-4 rounded-xl text-lg flex items-center justify-center gap-3">
+                        <span id="btnIcon">🔥</span><span id="btnText">Find Trending Topics</span>
                     </button>
                 </div>
             </section>
@@ -185,8 +200,8 @@
             </section>
             <section id="resultsSection" class="hidden">
                 <div class="flex items-center justify-between mb-4">
-                    <h2 class="text-xl font-bold text-white">📊 Analysis Result</h2>
-                    <button onclick="copyResult()"
+                    <h2 class="text-xl font-bold text-white">🔥 Trending Now</h2>
+                    <button onclick="copyR()"
                         class="text-sm text-purple-400 hover:text-purple-300 font-medium px-3 py-1 rounded-lg hover:bg-purple-500/10">📋
                         Copy</button>
                 </div>
@@ -201,42 +216,25 @@
 
 {% block scripts %}
 <script>
-        let imageData = null; let resultRaw = '';
-        const dropZone = document.getElementById('dropZone');
-        dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('dragover'); });
-        dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
-        dropZone.addEventListener('drop', e => { e.preventDefault(); dropZone.classList.remove('dragover'); if (e.dataTransfer.files.length) handleFile(e.dataTransfer.files[0]); });
-
-        function handleFile(file) {
-            if (!file || !file.type.startsWith('image/')) return;
-            if (file.size > 5 * 1024 * 1024) { document.getElementById('errorMsg').textContent = 'Image too large (max 5MB)'; document.getElementById('errorSection').classList.remove('hidden'); return; }
-            const reader = new FileReader();
-            reader.onload = e => {
-                imageData = e.target.result;
-                document.getElementById('previewImg').src = imageData;
-                document.getElementById('fileName').textContent = file.name;
-                document.getElementById('uploadArea').classList.add('hidden');
-                document.getElementById('previewArea').classList.remove('hidden');
-                document.getElementById('generateBtn').disabled = false;
-            };
-            reader.readAsDataURL(file);
-        }
-
-        async function analyze() {
-            if (!imageData) return;
+        let raw = '';
+        function pick(el) { document.querySelectorAll('.niche-chip').forEach(c => c.classList.remove('active')); el.classList.add('active'); document.getElementById('nicheInput').value = el.textContent.replace(/^[^\s]+\s/, '').trim(); }
+        async function generate() {
+            const niche = document.getElementById('nicheInput').value.trim();
+            if (!niche) { document.getElementById('errorMsg').textContent = 'Enter a niche!'; document.getElementById('errorSection').classList.remove('hidden'); return; }
             const btn = document.getElementById('generateBtn'); btn.disabled = true;
-            document.getElementById('btnText').textContent = 'Analyzing...'; document.getElementById('btnIcon').textContent = '⏳';
+            document.getElementById('btnText').textContent = 'Searching...'; document.getElementById('btnIcon').textContent = '⏳';
             document.getElementById('resultsSection').classList.add('hidden'); document.getElementById('errorSection').classList.add('hidden'); document.getElementById('loadingSection').classList.remove('hidden');
             try {
-                const r = await fetch('/analyze_thumbnail', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ image: imageData }) });
+                const r = await fetch('/generate_trending', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ niche }) });
                 const d = await r.json();
                 if (d.error) { document.getElementById('errorMsg').textContent = d.error; document.getElementById('errorSection').classList.remove('hidden'); return; }
-                resultRaw = d.analysis;
-                document.getElementById('resultText').innerHTML = resultRaw.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/^- (.*)/gm, '• $1');
+                raw = d.trends;
+                document.getElementById('resultText').innerHTML = raw.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/^- (.*)/gm, '• $1');
                 document.getElementById('resultsSection').classList.remove('hidden');
             } catch (e) { document.getElementById('errorMsg').textContent = 'Network error.'; document.getElementById('errorSection').classList.remove('hidden'); }
-            finally { btn.disabled = false; document.getElementById('btnText').textContent = 'Analyze Thumbnail'; document.getElementById('btnIcon').textContent = '🔬'; document.getElementById('loadingSection').classList.add('hidden'); }
+            finally { btn.disabled = false; document.getElementById('btnText').textContent = 'Find Trending Topics'; document.getElementById('btnIcon').textContent = '🔥'; document.getElementById('loadingSection').classList.add('hidden'); }
         }
-        function copyResult() { navigator.clipboard.writeText(resultRaw); const t = document.getElementById('toast'); t.style.bottom = '30px'; setTimeout(() => { t.style.bottom = '-100px'; }, 2000); }
+        function copyR() { navigator.clipboard.writeText(raw); const t = document.getElementById('toast'); t.style.bottom = '30px'; setTimeout(() => { t.style.bottom = '-100px'; }, 2000); }
+        document.getElementById('nicheInput').addEventListener('keypress', e => { if (e.key === 'Enter') generate(); });
     </script>
 {% endblock %}

@@ -1,14 +1,14 @@
 {% extends "layout.html" %}
 
-{% block title %}Free YouTube Tag Generator - SEO Tags for More Views | ScribeSpark{% endblock %}
+{% block title %}Free YouTube SEO Score Checker - Video SEO Analysis Tool | ScribeSpark{% endblock %}
 
 {% block meta %}
     <meta name="description"
-        content="Generate high-ranking YouTube tags instantly with AI. Free tag generator tool - find the best SEO tags to boost video discoverability, views & rankings. Best YouTube tag tool 2025.">
+        content="Check your YouTube video SEO score instantly with AI. Free SEO checker - analyze title, description & tags for better rankings. Best YouTube SEO analysis tool 2025.">
     <meta name="keywords"
-        content="YouTube tag generator, video tags generator, YouTube SEO tags, free tag generator, YouTube keyword tool, video tag finder, YouTube tags for views, best YouTube tags">
+        content="YouTube SEO checker, video SEO score, YouTube SEO analyzer, YouTube ranking checker, SEO score tool, video optimization checker, free SEO tool, YouTube metadata analyzer">
     <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://scribespark.online/tag-generator">
+    <link rel="canonical" href="https://scribespark.online/seo-score-checker">
 {% endblock %}
 
 {% block styles %}
@@ -23,15 +23,15 @@
             }
         }
 
-        @keyframes pop {
-            0% {
-                transform: scale(0.8);
+        @keyframes fadeInUp {
+            from {
                 opacity: 0;
+                transform: translateY(20px);
             }
 
-            100% {
-                transform: scale(1);
+            to {
                 opacity: 1;
+                transform: translateY(0);
             }
         }
 
@@ -116,16 +116,17 @@
             border-color: #8B5CF6;
         }
 
-        .tag-chip {
-            animation: pop 0.3s ease forwards;
-            cursor: pointer;
-            transition: all 0.2s;
+        .result-fade {
+            animation: fadeInUp 0.6s ease forwards;
         }
 
-        .tag-chip:hover {
-            background: rgba(139, 92, 246, 0.3);
-            border-color: #8B5CF6;
-            transform: scale(1.05);
+        .result-text {
+            white-space: pre-wrap;
+            line-height: 1.8;
+        }
+
+        .result-text strong {
+            color: #A78BFA;
         }
 
         #toast {
@@ -139,47 +140,55 @@
         class="fixed bottom-[-100px] left-1/2 -translate-x-1/2 bg-purple-600 text-white py-2 px-5 rounded-lg z-50 font-medium">
         Copied!</div>
     <section class="text-center mb-10">
-                <div class="text-5xl mb-4">🏷️</div>
-                <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-4">Tag Generator</h1>
-                <p class="text-lg text-gray-400 max-w-2xl mx-auto">Find the best YouTube tags to boost your video's
-                    discoverability.</p>
+                <div class="text-5xl mb-4">🔍</div>
+                <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-4">SEO Score Checker</h1>
+                <p class="text-lg text-gray-400 max-w-2xl mx-auto">Analyze and improve your video's SEO with AI-powered
+                    scoring.</p>
             </section>
             <section class="card rounded-2xl p-8 shadow-2xl mb-8">
                 <div class="space-y-6">
                     <div>
-                        <label for="topicInput" class="block text-sm font-semibold text-gray-300 mb-2">Video
-                            Topic</label>
-                        <input type="text" id="topicInput" placeholder="e.g., iPhone 16 Review"
-                            class="input-focus w-full bg-gray-900/80 border border-gray-700 rounded-xl p-4 text-gray-200 placeholder-gray-500 outline-none text-lg">
+                        <label for="titleInput" class="block text-sm font-semibold text-gray-300 mb-2">Video
+                            Title</label>
+                        <input type="text" id="titleInput" placeholder="Enter your video title"
+                            class="input-focus w-full bg-gray-900/80 border border-gray-700 rounded-xl p-4 text-gray-200 placeholder-gray-500 outline-none">
                     </div>
-                    <button id="generateBtn" onclick="generate()"
+                    <div>
+                        <label for="descInput" class="block text-sm font-semibold text-gray-300 mb-2">Video
+                            Description</label>
+                        <textarea id="descInput" rows="4" placeholder="Paste your video description"
+                            class="input-focus w-full bg-gray-900/80 border border-gray-700 rounded-xl p-4 text-gray-200 placeholder-gray-500 outline-none resize-none"></textarea>
+                    </div>
+                    <div>
+                        <label for="tagsInput" class="block text-sm font-semibold text-gray-300 mb-2">Tags <span
+                                class="text-gray-500">(comma separated)</span></label>
+                        <input type="text" id="tagsInput" placeholder="tag1, tag2, tag3"
+                            class="input-focus w-full bg-gray-900/80 border border-gray-700 rounded-xl p-4 text-gray-200 placeholder-gray-500 outline-none">
+                    </div>
+                    <button id="generateBtn" onclick="checkSEO()"
                         class="animated-button w-full text-white font-bold py-4 rounded-xl text-lg flex items-center justify-center gap-3">
-                        <span id="btnIcon">⚡</span><span id="btnText">Generate Tags</span>
+                        <span id="btnIcon">🔍</span><span id="btnText">Check SEO Score</span>
                     </button>
                 </div>
             </section>
             <section id="loadingSection" class="hidden">
-                <div class="flex flex-wrap gap-3">
-                    <div class="skeleton h-10 w-28"></div>
-                    <div class="skeleton h-10 w-36"></div>
-                    <div class="skeleton h-10 w-24"></div>
-                    <div class="skeleton h-10 w-32"></div>
-                    <div class="skeleton h-10 w-40"></div>
-                    <div class="skeleton h-10 w-28"></div>
+                <div class="space-y-3">
+                    <div class="skeleton h-6 w-full"></div>
+                    <div class="skeleton h-6 w-5/6"></div>
+                    <div class="skeleton h-6 w-full"></div>
+                    <div class="skeleton h-6 w-4/6"></div>
                 </div>
             </section>
             <section id="resultsSection" class="hidden">
                 <div class="flex items-center justify-between mb-4">
-                    <h2 class="text-xl font-bold text-white">🎯 Tags <span id="tagCount" class="gradient-text"></span>
-                    </h2>
-                    <button onclick="copyAll()"
+                    <h2 class="text-xl font-bold text-white">📊 SEO Analysis</h2>
+                    <button onclick="copyR()"
                         class="text-sm text-purple-400 hover:text-purple-300 font-medium px-3 py-1 rounded-lg hover:bg-purple-500/10">📋
-                        Copy All</button>
+                        Copy</button>
                 </div>
-                <div class="card rounded-2xl p-6">
-                    <div id="tagsContainer" class="flex flex-wrap gap-3"></div>
+                <div class="card rounded-2xl p-6 result-fade">
+                    <div id="resultText" class="result-text text-gray-300"></div>
                 </div>
-                <p class="text-gray-500 text-sm mt-3 text-center">Click any tag to copy it</p>
             </section>
             <section id="errorSection" class="hidden card rounded-2xl p-6 border-red-500/30">
                 <p class="text-red-400 font-medium" id="errorMsg"></p>
@@ -188,27 +197,25 @@
 
 {% block scripts %}
 <script>
-        let allTags = [];
-        async function generate() {
-            const topic = document.getElementById('topicInput').value.trim();
-            if (!topic) { document.getElementById('errorMsg').textContent = 'Enter a topic!'; document.getElementById('errorSection').classList.remove('hidden'); return; }
+        let raw = '';
+        async function checkSEO() {
+            const title = document.getElementById('titleInput').value.trim();
+            if (!title) { document.getElementById('errorMsg').textContent = 'Enter at least a title!'; document.getElementById('errorSection').classList.remove('hidden'); return; }
+            const description = document.getElementById('descInput').value.trim();
+            const tags = document.getElementById('tagsInput').value.trim();
             const btn = document.getElementById('generateBtn'); btn.disabled = true;
-            document.getElementById('btnText').textContent = 'Generating...'; document.getElementById('btnIcon').textContent = '⏳';
+            document.getElementById('btnText').textContent = 'Analyzing...'; document.getElementById('btnIcon').textContent = '⏳';
             document.getElementById('resultsSection').classList.add('hidden'); document.getElementById('errorSection').classList.add('hidden'); document.getElementById('loadingSection').classList.remove('hidden');
             try {
-                const r = await fetch('/generate_tags', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ topic }) });
+                const r = await fetch('/check_seo_score', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ title, description, tags }) });
                 const d = await r.json();
                 if (d.error) { document.getElementById('errorMsg').textContent = d.error; document.getElementById('errorSection').classList.remove('hidden'); return; }
-                allTags = d.tags.split(',').map(t => t.trim()).filter(t => t);
-                const c = document.getElementById('tagsContainer'); c.innerHTML = '';
-                document.getElementById('tagCount').textContent = `(${allTags.length})`;
-                allTags.forEach((tag, i) => { const s = document.createElement('span'); s.className = 'tag-chip inline-block bg-gray-800/70 border border-gray-600 text-gray-300 px-4 py-2 rounded-full text-sm font-medium'; s.style.animationDelay = `${i * 0.05}s`; s.textContent = tag; s.onclick = () => { navigator.clipboard.writeText(tag); showToast(); }; c.appendChild(s); });
+                raw = d.seo_result;
+                document.getElementById('resultText').innerHTML = raw.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/^- (.*)/gm, '• $1');
                 document.getElementById('resultsSection').classList.remove('hidden');
             } catch (e) { document.getElementById('errorMsg').textContent = 'Network error.'; document.getElementById('errorSection').classList.remove('hidden'); }
-            finally { btn.disabled = false; document.getElementById('btnText').textContent = 'Generate Tags'; document.getElementById('btnIcon').textContent = '⚡'; document.getElementById('loadingSection').classList.add('hidden'); }
+            finally { btn.disabled = false; document.getElementById('btnText').textContent = 'Check SEO Score'; document.getElementById('btnIcon').textContent = '🔍'; document.getElementById('loadingSection').classList.add('hidden'); }
         }
-        function copyAll() { navigator.clipboard.writeText(allTags.join(', ')); showToast(); }
-        function showToast() { const t = document.getElementById('toast'); t.style.bottom = '30px'; setTimeout(() => { t.style.bottom = '-100px'; }, 2000); }
-        document.getElementById('topicInput').addEventListener('keypress', e => { if (e.key === 'Enter') generate(); });
+        function copyR() { navigator.clipboard.writeText(raw); const t = document.getElementById('toast'); t.style.bottom = '30px'; setTimeout(() => { t.style.bottom = '-100px'; }, 2000); }
     </script>
 {% endblock %}

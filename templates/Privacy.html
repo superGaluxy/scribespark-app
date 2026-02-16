@@ -1,17 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacy Policy - ScribeSpark</title>
-    <meta name="description" content="Read the Privacy Policy for ScribeSpark.online. We are committed to protecting your data and being transparent about how our free AI tools work.">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖋️</text></svg>">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        @keyframes move-background { from { background-position: 0% 50%; } to { background-position: 100% 50%; } }
+{% extends "layout.html" %}
+
+{% block title %}Privacy Policy - ScribeSpark YouTube Creator Tools{% endblock %}
+
+{% block meta %}
+    <meta name="description" content="Read ScribeSpark privacy policy. We do not store your data. Your content inputs are only used for AI generation and are never saved or shared.">
+    <meta name="keywords" content="ScribeSpark privacy policy, data privacy, YouTube tools privacy, user data protection">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://scribespark.online/privacy">
+{% endblock %}
+
+{% block styles %}
+<style>
+@keyframes move-background { from { background-position: 0% 50%; } to { background-position: 100% 50%; } }
         body { font-family: 'Inter', sans-serif; background-color: #000000; color: #E5E7EB; overflow-x: hidden; }
         .aurora-background { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at 10% 20%, rgba(138, 43, 226, 0.2), transparent 40%), radial-gradient(circle at 80% 90%, rgba(75, 0, 130, 0.2), transparent 40%); z-index: -2; }
         .particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: url('https://www.transparenttextures.com/patterns/stardust.png'); animation: move-background 120s linear infinite; z-index: -1; }
@@ -19,79 +19,18 @@
         .gradient-text { background: linear-gradient(to right, #A78BFA, #F472B6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .content-wrapper { position: relative; z-index: 10; }
         .card { background-color: rgba(17, 24, 39, 0.6); backdrop-filter: blur(16px); border: 1px solid rgba(55, 65, 81, 0.5); }
-        .footer-link, .nav-link { transition: color 0.3s; }
-        .footer-link:hover, .nav-link:hover { color: #A78BFA; }
-        .prose h2 { color: #fff; font-weight: 700; margin-bottom: 0.75rem; margin-top: 2rem; font-size: 1.875rem; }
-        .prose p { color: #d1d5db; margin-bottom: 1.25rem; line-height: 1.75; }
-        .prose a { color: #A78BFA; text-decoration: underline; }
-        .prose ul { list-style-type: '✓ '; padding-left: 1rem; }
-        .ad-container { min-height: 100px; max-height: 280px; }
-    </style>
-</head>
-<body>
-    <div class="aurora-background"></div>
-    <div class="particles"></div>
-    <div class="content-wrapper container mx-auto px-4 py-8 max-w-4xl min-h-screen flex flex-col">
-        <header class="flex justify-between items-center mb-16 md:mb-24">
-             <a href="/" class="flex items-center space-x-2 text-3xl font-bold logo-font text-white">
-                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-purple-400"><path d="M22 18.5a2.5 2.5 0 0 1-4 0"/><path d="m14 14-2.5 2.5a2.83 2.83 0 1 0 4 4L20 16"/><path d="M14 14l4-4"/><path d="M12 6c1.5 2 3 2 4 0"/><path d="M12 6c-1.5 2-3 2-4 0"/><path d="M4 14a2.83 2.83 0 1 0 4 4L12 14"/></svg>
-                <span>ScribeSpark</span>
-            </a>
-            <nav class="hidden md:flex space-x-6 text-gray-400 font-medium">
-                <a href="/" class="nav-link">Home</a>
-                <a href="/#faq" class="nav-link">FAQs</a>
-                <a href="/blog" class="nav-link">Blog</a>
-                <a href="/about" class="nav-link">About</a>
-                <a href="/contact" class="nav-link">Contact</a>
-            </nav>
-        </header>
+</style>
+{% endblock %}
 
-        <main class="flex-grow">
-            <section class="card rounded-2xl p-8 md:p-12 shadow-2xl prose max-w-none">
-                <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-8 !mt-0">Privacy Policy</h1>
-                <p><strong>Last Updated:</strong> September 13, 2025</p>
-
-                <h2>Introduction</h2>
-                <p>Welcome to ScribeSpark ("we," "our," or "us"). We are committed to protecting your privacy. This Privacy Policy explains how we handle information when you use our website, scribespark.online (the "Service").</p>
-
-                <h2>Information We Collect</h2>
-                <p>Our tools are designed to be used without requiring you to create an account or provide any personal information. We do not collect, store, or share any personal data like your name, email address, or IP address.</p>
-                <p>The text, topics, and images you input into our AI tools are sent to our third-party AI provider (Google's Gemini API) for processing. This data is used solely to generate a response for you and is not stored or logged by us. We encourage you to review Google's privacy policy for more information on how they handle data.</p>
-                
-                <h2>Third-Party Services</h2>
-                <p>We use the following third-party services:</p>
-                <ul>
-                    <li><strong>Google Gemini API:</strong> To power our AI tools. Your inputs are sent to Google for processing.</li>
-                    <li><strong>Adsterra:</strong> We may use Adsterra to display advertisements on our website. Adsterra may use cookies to serve ads based on a user's prior visits to our website or other websites. You can opt out of personalized advertising by visiting Adsterra's privacy policy.</li>
-                    <li><strong>Cloudflare:</strong> For website performance and security. Cloudflare may collect standard web traffic data.</li>
-                </ul>
-
-                <h2>Changes to This Privacy Policy</h2>
-                <p>We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page. You are advised to review this Privacy Policy periodically for any changes.</p>
-
-                <h2>Contact Us</h2>
-                <p>If you have any questions about this Privacy Policy, please visit our <a href="/contact">Contact Us</a> page.</p>
-            </section>
-            
-            
-        </main>
-        
-        <footer class="text-center border-t border-gray-800 pt-8 mt-16">
-            <div class="flex justify-center space-x-6 mb-4 text-gray-400">
-                <a href="/about" class="footer-link">About Us</a>
-                <a href="/privacy" class="footer-link">Privacy Policy</a>
-                <a href="/contact" class="footer-link">Contact</a>
+{% block content %}
+    
+    <h1 class="text-4xl font-extrabold text-white mb-6">Privacy Policy</h1>
+            <div class="space-y-6 text-gray-300 text-lg">
+                <p><strong>Last updated: September 5, 2025</strong></p>
+                <p>We respect your privacy. The video topics and tones you enter are sent directly to the Gemini API for the sole purpose of generating hooks. We do not store, log, or share any of your inputs. Your creative process remains yours alone. We believe in maximum privacy for maximum creativity.</p>
             </div>
-            <p class="text-gray-600">&copy; 2025 ScribeSpark. Your Ultimate AI Creator Suite.</p>
-            <div class="mt-6">
-                <h4 class="text-lg font-semibold text-white mb-2">Our Other Projects</h4>
-                <div class="flex justify-center space-x-6 text-gray-400">
-                    <a href="https://toolify.66ghz.com" target="_blank" class="footer-link">Toolify</a>
-                    <a href="https://www.linkdart.online" target="_blank" class="footer-link">LinkDart</a>
-                </div>
-            </div>
-        </footer>
-    </div>
-</body>
-</html>
+{% endblock %}
 
+{% block scripts %}
+
+{% endblock %}

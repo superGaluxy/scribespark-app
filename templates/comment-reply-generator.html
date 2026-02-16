@@ -1,14 +1,14 @@
 {% extends "layout.html" %}
 
-{% block title %}Free YouTube Channel Name Generator - Unique Name Ideas | ScribeSpark{% endblock %}
+{% block title %}Free AI Comment Reply Generator - YouTube Comment Replies | ScribeSpark{% endblock %}
 
 {% block meta %}
     <meta name="description"
-        content="Generate unique, catchy & memorable YouTube channel name ideas with AI. Free channel name generator - find the perfect brand name for your YouTube channel 2025.">
+        content="Generate professional, engaging YouTube comment replies instantly with AI. Free comment reply generator - boost engagement, build community & reply to haters smartly. Best reply tool 2025.">
     <meta name="keywords"
-        content="YouTube channel name generator, channel name ideas, YouTube name generator, unique channel names, catchy YouTube names, YouTube branding, free name generator, channel name finder">
+        content="YouTube comment reply generator, AI comment reply, YouTube engagement, comment response generator, reply to comments, YouTube community building, free reply generator, smart comment replies">
     <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://scribespark.online/channel-name-generator">
+    <link rel="canonical" href="https://scribespark.online/comment-reply-generator">
 {% endblock %}
 
 {% block styles %}
@@ -116,22 +116,41 @@
             border-color: #8B5CF6;
         }
 
-        .result-item {
+        .result-fade {
             animation: fadeInUp 0.5s ease forwards;
             opacity: 0;
         }
 
+        .result-fade:nth-child(1) {
+            animation-delay: .1s
+        }
+
+        .result-fade:nth-child(2) {
+            animation-delay: .2s
+        }
+
+        .result-fade:nth-child(3) {
+            animation-delay: .3s
+        }
+
         .copy-btn:hover {
-            background: rgba(139, 92, 246, 0.3);
+            background-color: rgba(139, 92, 246, 0.3);
         }
 
         .copy-btn.copied {
-            background: rgba(16, 185, 129, 0.3);
+            background-color: rgba(16, 185, 129, 0.3);
             border-color: #10B981;
         }
 
         #toast {
             transition: all 0.5s;
+        }
+
+        select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%239CA3AF' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: calc(100% - 16px) center;
         }
 </style>
 {% endblock %}
@@ -141,40 +160,46 @@
         class="fixed bottom-[-100px] left-1/2 -translate-x-1/2 bg-purple-600 text-white py-2 px-5 rounded-lg z-50 font-medium">
         Copied!</div>
     <section class="text-center mb-10">
-                <div class="text-5xl mb-4">📛</div>
-                <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-4">Channel Name Generator</h1>
-                <p class="text-lg text-gray-400 max-w-2xl mx-auto">Generate unique, memorable YouTube channel names for
-                    your niche.</p>
+                <div class="text-5xl mb-4">💬</div>
+                <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-4">Comment Reply Generator</h1>
+                <p class="text-lg text-gray-400 max-w-2xl mx-auto">Generate smart, engaging replies to YouTube comments
+                    in seconds.</p>
             </section>
             <section class="card rounded-2xl p-8 shadow-2xl mb-8">
                 <div class="space-y-6">
                     <div>
-                        <label for="nicheInput" class="block text-sm font-semibold text-gray-300 mb-2">Your Niche /
-                            Topic</label>
-                        <input type="text" id="nicheInput" placeholder="e.g., Tech Reviews, Cooking, Gaming"
-                            class="input-focus w-full bg-gray-900/80 border border-gray-700 rounded-xl p-4 text-gray-200 placeholder-gray-500 outline-none text-lg">
+                        <label for="commentInput" class="block text-sm font-semibold text-gray-300 mb-2">Paste the
+                            Comment</label>
+                        <textarea id="commentInput" rows="3" placeholder="e.g., Great video! Can you make one about..."
+                            class="input-focus w-full bg-gray-900/80 border border-gray-700 rounded-xl p-4 text-gray-200 placeholder-gray-500 outline-none resize-none"></textarea>
+                    </div>
+                    <div>
+                        <label for="toneSelect" class="block text-sm font-semibold text-gray-300 mb-2">Reply
+                            Tone</label>
+                        <select id="toneSelect"
+                            class="input-focus w-full bg-gray-900/80 border border-gray-700 rounded-xl p-4 text-gray-200 outline-none cursor-pointer">
+                            <option value="Friendly & Appreciative" selected>😊 Friendly & Appreciative</option>
+                            <option value="Professional & Informative">💼 Professional</option>
+                            <option value="Funny & Witty">😂 Funny & Witty</option>
+                            <option value="Calm & Diplomatic (for negative comments)">🕊️ Calm & Diplomatic</option>
+                            <option value="Enthusiastic & Hype">🔥 Enthusiastic & Hype</option>
+                        </select>
                     </div>
                     <button id="generateBtn" onclick="generate()"
                         class="animated-button w-full text-white font-bold py-4 rounded-xl text-lg flex items-center justify-center gap-3">
-                        <span id="btnIcon">⚡</span><span id="btnText">Generate Names</span>
+                        <span id="btnIcon">💬</span><span id="btnText">Generate Replies</span>
                     </button>
                 </div>
             </section>
             <section id="loadingSection" class="hidden">
                 <div class="space-y-3">
-                    <div class="skeleton h-14 w-full"></div>
-                    <div class="skeleton h-14 w-full"></div>
-                    <div class="skeleton h-14 w-full"></div>
-                    <div class="skeleton h-14 w-3/4"></div>
+                    <div class="skeleton h-20 w-full"></div>
+                    <div class="skeleton h-20 w-full"></div>
+                    <div class="skeleton h-20 w-full"></div>
                 </div>
             </section>
             <section id="resultsSection" class="hidden">
-                <div class="flex items-center justify-between mb-4">
-                    <h2 class="text-xl font-bold text-white">🎯 Channel Name Ideas</h2>
-                    <button onclick="copyAll()"
-                        class="text-sm text-purple-400 hover:text-purple-300 font-medium px-3 py-1 rounded-lg hover:bg-purple-500/10">📋
-                        Copy All</button>
-                </div>
+                <h2 class="text-xl font-bold text-white mb-4">💬 Reply Options</h2>
                 <div id="resultsContainer" class="space-y-3"></div>
             </section>
             <section id="errorSection" class="hidden card rounded-2xl p-6 border-red-500/30">
@@ -184,35 +209,31 @@
 
 {% block scripts %}
 <script>
-        let names = [];
         async function generate() {
-            const niche = document.getElementById('nicheInput').value.trim();
-            if (!niche) { document.getElementById('errorMsg').textContent = 'Enter a niche!'; document.getElementById('errorSection').classList.remove('hidden'); return; }
+            const comment = document.getElementById('commentInput').value.trim();
+            if (!comment) { document.getElementById('errorMsg').textContent = 'Paste a comment first!'; document.getElementById('errorSection').classList.remove('hidden'); return; }
+            const tone = document.getElementById('toneSelect').value;
             const btn = document.getElementById('generateBtn'); btn.disabled = true;
             document.getElementById('btnText').textContent = 'Generating...'; document.getElementById('btnIcon').textContent = '⏳';
             document.getElementById('resultsSection').classList.add('hidden'); document.getElementById('errorSection').classList.add('hidden'); document.getElementById('loadingSection').classList.remove('hidden');
             try {
-                const r = await fetch('/generate_channel_name', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ niche }) });
+                const r = await fetch('/generate_comment_reply', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ comment, tone }) });
                 const d = await r.json();
                 if (d.error) { document.getElementById('errorMsg').textContent = d.error; document.getElementById('errorSection').classList.remove('hidden'); return; }
-                names = d.names.split('\n').filter(t => t.trim());
-                const c = document.getElementById('resultsContainer'); c.innerHTML = '';
-                names.forEach((name, i) => {
-                    const clean = name.replace(/^\d+[\.\)\-]\s*/, '').replace(/^\*+|\*+$/g, '').trim();
+                const replies = d.replies.split('\n').filter(t => t.trim());
+                const container = document.getElementById('resultsContainer'); container.innerHTML = '';
+                replies.forEach(reply => {
+                    const clean = reply.replace(/^\d+[.\-)\s]*/, '').replace(/^\*+|\*+$/g, '').replace(/^"|"$/g, '').trim();
                     if (!clean) return;
                     const div = document.createElement('div');
-                    div.className = 'result-item card rounded-xl p-4 flex items-center justify-between gap-4 hover:border-purple-500/30 transition-all';
-                    div.style.animationDelay = `${i * 0.1}s`;
-                    div.innerHTML = `<p class="text-gray-200 text-lg flex-grow font-medium">${clean}</p><button onclick="copyOne(this,'${clean.replace(/'/g, "\\'")}')" class="copy-btn flex-shrink-0 border border-gray-600 text-gray-400 hover:text-white px-3 py-2 rounded-lg text-sm transition-all">📋 Copy</button>`;
-                    c.appendChild(div);
+                    div.className = 'result-fade card rounded-xl p-4 flex items-center justify-between gap-4 hover:border-purple-500/30 transition-all';
+                    div.innerHTML = `<p class="text-gray-200 flex-grow">${clean}</p><button onclick="copyOne(this,'${clean.replace(/'/g, "\\'")}')" class="copy-btn flex-shrink-0 border border-gray-600 text-gray-400 hover:text-white px-3 py-2 rounded-lg text-sm transition-all">📋 Copy</button>`;
+                    container.appendChild(div);
                 });
                 document.getElementById('resultsSection').classList.remove('hidden');
             } catch (e) { document.getElementById('errorMsg').textContent = 'Network error.'; document.getElementById('errorSection').classList.remove('hidden'); }
-            finally { btn.disabled = false; document.getElementById('btnText').textContent = 'Generate Names'; document.getElementById('btnIcon').textContent = '⚡'; document.getElementById('loadingSection').classList.add('hidden'); }
+            finally { btn.disabled = false; document.getElementById('btnText').textContent = 'Generate Replies'; document.getElementById('btnIcon').textContent = '💬'; document.getElementById('loadingSection').classList.add('hidden'); }
         }
-        function copyOne(btn, text) { navigator.clipboard.writeText(text); btn.innerHTML = '✅ Copied'; btn.classList.add('copied'); showToast(); setTimeout(() => { btn.innerHTML = '📋 Copy'; btn.classList.remove('copied'); }, 2000); }
-        function copyAll() { const all = names.map(n => n.replace(/^\d+[\.\)\-]\s*/, '').replace(/^\*+|\*+$/g, '').trim()).filter(t => t).join('\n'); navigator.clipboard.writeText(all); showToast(); }
-        function showToast() { const t = document.getElementById('toast'); t.style.bottom = '30px'; setTimeout(() => { t.style.bottom = '-100px'; }, 2000); }
-        document.getElementById('nicheInput').addEventListener('keypress', e => { if (e.key === 'Enter') generate(); });
+        function copyOne(btn, text) { navigator.clipboard.writeText(text); btn.innerHTML = '✅ Copied'; btn.classList.add('copied'); const t = document.getElementById('toast'); t.style.bottom = '30px'; setTimeout(() => { t.style.bottom = '-100px'; btn.innerHTML = '📋 Copy'; btn.classList.remove('copied'); }, 2000); }
     </script>
 {% endblock %}
