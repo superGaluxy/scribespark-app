@@ -1,5 +1,3 @@
-
-```python
 # app.py
 import google.generativeai as genai
 from flask import Flask, render_template, request, jsonify, send_from_directory
@@ -10,18 +8,15 @@ import os
 app = Flask(__name__)
 
 # ----------------- ENVIRONMENT VARIABLE SETUP -----------------
-# Render Dashboard mein 'GEMINI_API_KEY' set hona chahiye
 API_KEY = os.environ.get('GEMINI_API_KEY')
 
 if not API_KEY:
     print("WARNING: API_KEY not found in environment variables!")
 else:
-    # Gemini API ko configure karte hain
     genai.configure(api_key=API_KEY)
     print("INFO: Gemini API configured successfully.")
 
-# AI model ko select karte hain (Latest stable model: gemini-1.5-flash)
-# Note: 'gemini-pro' purana ho gaya hai aur 404 error de sakta hai.
+# AI model selection (Latest stable version)
 model = genai.GenerativeModel('gemini-1.5-flash')
 
 # --- Static folder ensure ---
@@ -235,7 +230,6 @@ def analyze_thumbnail():
         if not image_data:
             return jsonify({'error': 'No image data.'}), 400
             
-        # Image process karna (base64 to image bytes)
         header, base64_str = image_data.split(',', 1)
         mime_type = header.split(':')[1].split(';')[0]
         image_bytes = base64.b64decode(base64_str)
@@ -243,15 +237,13 @@ def analyze_thumbnail():
         image_parts = [{"mime_type": mime_type, "data": image_bytes}]
         prompt = "Analyze this YouTube thumbnail and give an overall score out of 10. Give tips to improve it."
         
-        # Gemini 1.5 Flash supports both image and text
         response = model.generate_content([prompt, image_parts[0]])
         return jsonify({'analysis': response.text.strip()})
     except Exception as e:
         print(f"Error in analyze_thumbnail: {e}")
         return jsonify({'error': str(e)}), 500
 
-# Server ko run karte hain
+# Server run
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 8080))
     app.run(host='0.0.0.0', port=port)
-```
