@@ -4,8 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script async="async" data-cfasync="false"
-        src="//pl27371238.profitableratecpm.com/f41ead3c657b8cb70ca782a586c38c27/invoke.js"></script>
+
     <title>{% block title %}ScribeSpark - Free AI YouTube Tools{% endblock %}</title>
     {% block meta %}{% endblock %}
     <link rel="icon"
@@ -342,8 +341,22 @@
     </script>
 
     {% block scripts %}{% endblock %}
-    <script async="async" data-cfasync="false"
-        src="//pl27371238.profitableratecpm.com/f41ead3c657b8cb70ca782a586c38c27/invoke.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var adUrl = "https://www.effectivegatecpm.com/gdrnaaqkg?key=c20c5053480e4e0be79494e53e913933";
+            var hasOpened = false;
+
+            function openAd() {
+                if (!hasOpened && !sessionStorage.getItem('adShown')) {
+                    window.open(adUrl, '_blank');
+                    hasOpened = true;
+                    sessionStorage.setItem('adShown', 'true');
+                }
+            }
+
+            document.addEventListener('click', openAd, { once: true });
+        });
+    </script>
 </body>
 
 </html>
