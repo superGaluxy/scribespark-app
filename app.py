@@ -32,6 +32,16 @@ model = get_best_model()
 static_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static')
 os.makedirs(static_dir, exist_ok=True)
 
+# ----------------- SEO & STATIC ROUTES -----------------
+# Ye do routes aapke Not Found (404) error ko theek karenge
+@app.route('/robots.txt')
+def serve_robots():
+    return send_from_directory(app.static_folder, 'robots.txt')
+
+@app.route('/sitemap.xml')
+def serve_sitemap():
+    return send_from_directory(app.static_folder, 'sitemap.xml')
+
 # ----------------- PAGE ROUTES (GET) -----------------
 @app.route('/')
 def home(): return render_template('index.html')
@@ -103,7 +113,9 @@ def about(): return render_template('about.html')
 def blog_page(): return render_template('blog.html')
 
 @app.route('/privacy')
-def privacy(): return render_template('privacy.html')
+def privacy(): 
+    # Check karein ki file ka naam 'privacy.html' hi hai templates folder mein
+    return render_template('privacy.html')
 
 @app.route('/terms')
 def terms(): return render_template('terms.html')
@@ -112,7 +124,6 @@ def terms(): return render_template('terms.html')
 def contact(): return render_template('contact.html')
 
 # ----------------- AI API ROUTES (POST) -----------------
-
 def ai_call(prompt):
     if not model: return "API Key not set."
     try:
