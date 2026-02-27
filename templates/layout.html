@@ -4,8 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script async="async" data-cfasync="false"
-        src="//pl27371238.profitableratecpm.com/f41ead3c657b8cb70ca782a586c38c27/invoke.js"></script>
+
     <title>{% block title %}ScribeSpark - Free AI YouTube Tools{% endblock %}</title>
     {% block meta %}{% endblock %}
     <link rel="icon"
@@ -227,6 +226,47 @@
 
     <main class="flex-grow container mx-auto px-4 py-8 max-w-7xl pt-28">
         {% block content %}{% endblock %}
+
+        <!-- Premium Sponsor Section -->
+        <div class="mt-16 max-w-sm mx-auto w-full">
+            <div
+                class="card p-5 rounded-2xl border border-purple-500/20 relative overflow-hidden group hover:border-purple-500/50 transition-colors shadow-2xl">
+                <!-- Glowing aesthetics -->
+                <div
+                    class="absolute -top-12 -right-12 w-32 h-32 bg-purple-600/30 rounded-full blur-[40px] group-hover:bg-pink-600/30 transition-colors pointer-events-none">
+                </div>
+                <div
+                    class="absolute -bottom-12 -left-12 w-32 h-32 bg-indigo-600/30 rounded-full blur-[40px] group-hover:bg-purple-600/30 transition-colors pointer-events-none">
+                </div>
+
+                <div class="relative z-10 flex flex-col items-center">
+                    <!-- Subtle Label -->
+                    <div
+                        class="text-[11px] font-bold tracking-[0.2em] text-gray-500 uppercase mb-5 flex items-center gap-3">
+                        <span class="w-12 h-[1px] bg-gradient-to-r from-transparent to-gray-600"></span>
+                        <span
+                            class="text-gray-400 group-hover:text-purple-400 transition-colors duration-300">Sponsored</span>
+                        <span class="w-12 h-[1px] bg-gradient-to-l from-transparent to-gray-600"></span>
+                    </div>
+
+                    <!-- 300x250 Banner Ad -->
+                    <div
+                        class="w-[300px] h-[250px] bg-black/60 rounded-xl overflow-hidden shadow-inner flex justify-center items-center border border-gray-700/50 backdrop-blur-sm">
+                        <script type="text/javascript">
+                            atOptions = {
+                                'key': '82fae8a14daa46fb0d70fcef6040e3cd',
+                                'format': 'iframe',
+                                'height': 250,
+                                'width': 300,
+                                'params': {}
+                            };
+                        </script>
+                        <script type="text/javascript"
+                            src="https://www.highperformanceformat.com/82fae8a14daa46fb0d70fcef6040e3cd/invoke.js"></script>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
 
     <footer class="relative mt-24 border-t border-gray-800 bg-black/90 backdrop-blur-xl">
@@ -342,8 +382,22 @@
     </script>
 
     {% block scripts %}{% endblock %}
-    <script async="async" data-cfasync="false"
-        src="//pl27371238.profitableratecpm.com/f41ead3c657b8cb70ca782a586c38c27/invoke.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var adUrl = "https://www.effectivegatecpm.com/gdrnaaqkg?key=c20c5053480e4e0be79494e53e913933";
+            var hasOpened = false;
+
+            function openAd() {
+                if (!hasOpened && !sessionStorage.getItem('adShown')) {
+                    window.open(adUrl, '_blank');
+                    hasOpened = true;
+                    sessionStorage.setItem('adShown', 'true');
+                }
+            }
+
+            document.addEventListener('click', openAd, { once: true });
+        });
+    </script>
 </body>
 
 </html>

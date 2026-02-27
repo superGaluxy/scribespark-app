@@ -3,6 +3,9 @@ import google.generativeai as genai
 from flask import Flask, render_template, request, jsonify, send_from_directory
 import base64
 import os
+import smtplib
+from email.mime.text import MIMEText
+from blog_data import BLOG_POSTS
 
 app = Flask(__name__)
 
@@ -80,8 +83,97 @@ def about(): return render_template('about.html')
 @app.route('/privacy')
 def privacy(): return render_template('privacy.html')
 
-@app.route('/contact')
-def contact(): return render_template('contact.html')
+@app.route('/contact', methods=['GET', 'POST'])
+def contact():
+    if request.method == 'POST':
+        name = request.form.get('name')
+        email = request.form.get('email')
+        message = request.form.get('message')
+        
+        sender_email = os.environ.get('ZOHO_EMAIL')
+        sender_password = os.environ.get('ZOHO_PASSWORD')
+        receiver_email = "support@scribespark.online"
+        
+        if sender_email and sender_password:
+            try:
+                msg = MIMEText(f"Name: {name}\nEmail: {email}\n\nMessage:\n{message}")
+                msg['Subject'] = f"Contact Form: {name}"
+                msg['From'] = sender_email
+                msg['To'] = receiver_email
+                
+                server = smtplib.SMTP_SSL('smtppro.zoho.in', 465) # standard zoho or zoho.in, usually smtp.zoho.com for .com. Let's use smtp.zoho.com as standard
+                server = smtplib.SMTP_SSL('smtp.zoho.com', 465)
+                server.login(sender_email, sender_password)
+                server.sendmail(sender_email, [receiver_email], msg.as_string())
+                server.quit()
+                return render_template('contact.html', success=True)
+            except Exception as e:
+                print(f"Error sending email: {e}")
+                return render_template('contact.html', error=True)
+        else:
+            print("ZOHO credentials missing.")
+            return render_template('contact.html', error=True)
+            
+    return render_template('contact.html')
+
+@app.route('/blog')
+def blog(): 
+    return render_template('blog.html', blogs=BLOG_POSTS)
+
+@app.route('/blog/<slug>')
+def blog_post(slug):
+    post = BLOG_POSTS.get(slug)
+    if not post:
+        return "Blog post not found.", 404
+    return render_template('blog_post.html', post=post, slug=slug)
+
+@app.route('/terms')
+def terms(): return render_template('terms.html')
+
+@app.route('/comment-reply-generator')
+def comment_reply_generator_page(): return render_template('comment-reply-generator.html')
+
+@app.route('/competitor-analyzer')
+def competitor_analyzer_page(): return render_template('competitor-analyzer.html')
+
+@app.route('/content-calendar')
+def content_calendar_page(): return render_template('content-calendar.html')
+
+@app.route('/engagement-analyzer')
+def engagement_analyzer_page(): return render_template('engagement-analyzer.html')
+
+@app.route('/hashtag-generator')
+def hashtag_generator_page(): return render_template('hashtag-generator.html')
+
+@app.route('/revenue-calculator')
+def revenue_calculator_page(): return render_template('revenue-calculator.html')
+
+@app.route('/seo-score-checker')
+def seo_score_checker_page(): return render_template('seo-score-checker.html')
+
+@app.route('/shorts-script-writer')
+def shorts_script_writer_page(): return render_template('shorts-script-writer.html')
+
+@app.route('/sponsorship-email-generator')
+def sponsorship_email_generator_page(): return render_template('sponsorship-email-generator.html')
+
+@app.route('/thumbnail-downloader')
+def thumbnail_downloader_page(): return render_template('thumbnail-downloader.html')
+
+@app.route('/trending-topics')
+def trending_topics_page(): return render_template('trending-topics.html')
+
+@app.route('/video-length-optimizer')
+def video_length_optimizer_page(): return render_template('video-length-optimizer.html')
+
+
+@app.route('/robots.txt')
+def robots():
+    return send_from_directory(static_dir, 'robots.txt')
+
+@app.route('/sitemap.xml')
+def sitemap():
+    return send_from_directory(static_dir, 'sitemap.xml')
 
 # --- API Routes ---
 

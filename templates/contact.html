@@ -3,48 +3,124 @@
 {% block title %}Contact ScribeSpark - Get Support & Feedback{% endblock %}
 
 {% block meta %}
-    <meta name="description" content="Contact the ScribeSpark team for support, feedback or partnership inquiries. We are always here to help YouTube creators succeed.">
-    <meta name="keywords" content="contact ScribeSpark, ScribeSpark support, YouTube tools support, ScribeSpark feedback, creator tools help">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://scribespark.online/contact">
+<meta name="description"
+    content="Contact the ScribeSpark team for support, feedback or partnership inquiries. We are always here to help YouTube creators succeed.">
+<meta name="keywords"
+    content="contact ScribeSpark, ScribeSpark support, YouTube tools support, ScribeSpark feedback, creator tools help">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://scribespark.online/contact">
 {% endblock %}
 
 {% block styles %}
 <style>
-@keyframes move-background { from { background-position: 0% 50%; } to { background-position: 100% 50%; } }
-        body { font-family: 'Inter', sans-serif; background-color: #000000; color: #E5E7EB; overflow-x: hidden; }
-        .aurora-background { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at 10% 20%, rgba(138, 43, 226, 0.2), transparent 40%), radial-gradient(circle at 80% 90%, rgba(75, 0, 130, 0.2), transparent 40%); z-index: -2; }
-        .particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: url('https://www.transparenttextures.com/patterns/stardust.png'); animation: move-background 120s linear infinite; z-index: -1; }
-        .logo-font { font-family: 'Playfair Display', serif; }
-        .gradient-text { background: linear-gradient(to right, #A78BFA, #F472B6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .content-wrapper { position: relative; z-index: 10; }
-        .card { background-color: rgba(17, 24, 39, 0.6); backdrop-filter: blur(16px); border: 1px solid rgba(55, 65, 81, 0.5); }
-        .animated-button { background-size: 200% auto; background-image: linear-gradient(to right, #8B5CF6 0%, #EC4899 51%, #8B5CF6 100%); transition: background-position 0.5s ease; }
-        .animated-button:hover { background-position: right center; }
+    @keyframes move-background {
+        from {
+            background-position: 0% 50%;
+        }
+
+        to {
+            background-position: 100% 50%;
+        }
+    }
+
+    body {
+        font-family: 'Inter', sans-serif;
+        background-color: #000000;
+        color: #E5E7EB;
+        overflow-x: hidden;
+    }
+
+    .aurora-background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle at 10% 20%, rgba(138, 43, 226, 0.2), transparent 40%), radial-gradient(circle at 80% 90%, rgba(75, 0, 130, 0.2), transparent 40%);
+        z-index: -2;
+    }
+
+    .particles {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
+        animation: move-background 120s linear infinite;
+        z-index: -1;
+    }
+
+    .logo-font {
+        font-family: 'Playfair Display', serif;
+    }
+
+    .gradient-text {
+        background: linear-gradient(to right, #A78BFA, #F472B6);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .content-wrapper {
+        position: relative;
+        z-index: 10;
+    }
+
+    .card {
+        background-color: rgba(17, 24, 39, 0.6);
+        backdrop-filter: blur(16px);
+        border: 1px solid rgba(55, 65, 81, 0.5);
+    }
+
+    .animated-button {
+        background-size: 200% auto;
+        background-image: linear-gradient(to right, #8B5CF6 0%, #EC4899 51%, #8B5CF6 100%);
+        transition: background-position 0.5s ease;
+    }
+
+    .animated-button:hover {
+        background-position: right center;
+    }
 </style>
 {% endblock %}
 
 {% block content %}
-    
-    <h1 class="text-4xl font-extrabold text-white mb-4">Get In Touch</h1>
-            <p class="text-gray-400 mb-8">Have a question, feedback, or a feature request? We'd love to hear from you.</p>
-            <form action="#" method="POST" class="space-y-6">
-                 <div>
-                    <label for="name" class="block text-sm font-medium text-gray-300">Full Name</label>
-                    <input type="text" name="name" id="name" required class="mt-1 block w-full bg-gray-900 border-gray-700 rounded-lg p-3 text-gray-200 focus:ring-purple-500">
-                </div>
-                <div>
-                    <label for="email" class="block text-sm font-medium text-gray-300">Email Address</label>
-                    <input type="email" name="email" id="email" required class="mt-1 block w-full bg-gray-900 border-gray-700 rounded-lg p-3 text-gray-200 focus:ring-purple-500">
-                </div>
-                <div>
-                    <label for="message" class="block text-sm font-medium text-gray-300">Message</label>
-                    <textarea name="message" id="message" rows="4" required class="mt-1 block w-full bg-gray-900 border-gray-700 rounded-lg p-3 text-gray-200 focus:ring-purple-500"></textarea>
-                </div>
-                <div>
-                    <button type="submit" class="w-full animated-button text-white font-semibold py-3 px-4 rounded-lg">Send Message</button>
-                </div>
-            </form>
+
+<h1 class="text-4xl font-extrabold text-white mb-4">Get In Touch</h1>
+<p class="text-gray-400 mb-8">Have a question, feedback, or a feature request? We'd love to hear from you.</p>
+
+{% if success %}
+<div class="mb-6 p-4 rounded-lg bg-green-500/20 border border-green-500/50 text-green-300">
+    Your message has been sent successfully. We will get back to you soon!
+</div>
+{% elif error %}
+<div class="mb-6 p-4 rounded-lg bg-red-500/20 border border-red-500/50 text-red-300">
+    There was an error sending your message. Please try again later.
+</div>
+{% endif %}
+
+<form action="/contact" method="POST" class="space-y-6">
+    <div>
+        <label for="name" class="block text-sm font-medium text-gray-300">Full Name</label>
+        <input type="text" name="name" id="name" required
+            class="mt-1 block w-full bg-gray-900 border-gray-700 rounded-lg p-3 text-gray-200 focus:ring-purple-500">
+    </div>
+    <div>
+        <label for="email" class="block text-sm font-medium text-gray-300">Email Address</label>
+        <input type="email" name="email" id="email" required
+            class="mt-1 block w-full bg-gray-900 border-gray-700 rounded-lg p-3 text-gray-200 focus:ring-purple-500">
+    </div>
+    <div>
+        <label for="message" class="block text-sm font-medium text-gray-300">Message</label>
+        <textarea name="message" id="message" rows="4" required
+            class="mt-1 block w-full bg-gray-900 border-gray-700 rounded-lg p-3 text-gray-200 focus:ring-purple-500"></textarea>
+    </div>
+    <div>
+        <button type="submit" class="w-full animated-button text-white font-semibold py-3 px-4 rounded-lg">Send
+            Message</button>
+    </div>
+</form>
 {% endblock %}
 
 {% block scripts %}
