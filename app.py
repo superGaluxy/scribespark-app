@@ -229,95 +229,104 @@ def ai_call(prompt):
 
 @app.route('/generate_titles', methods=['POST'])
 def generate_titles():
-    topic = request.json.get('topic')
+    data = request.json or {}
+    topic = data.get('topic', '')
     return jsonify({'titles': ai_call(f"Generate 5 viral YouTube titles for '{topic}'.")})
 
 @app.route('/generate_description', methods=['POST'])
 def generate_description():
-    data = request.json
-    return jsonify({'description': ai_call(f"Write a YouTube description for '{data['topic']}' using keywords: {data.get('keywords','')}")})
+    data = request.json or {}
+    return jsonify({'description': ai_call(f"Write a YouTube description for '{data.get('topic','')}' using keywords: {data.get('keywords','')}")})
 
 @app.route('/generate_script', methods=['POST'])
 def generate_script():
-    data = request.json
-    return jsonify({'script': ai_call(f"Write a YouTube script for '{data['topic']}' with length {data.get('length','5 mins')}")})
+    data = request.json or {}
+    return jsonify({'script': ai_call(f"Write a YouTube script for '{data.get('topic','')}' with length {data.get('length','5 mins')}")})
 
 @app.route('/generate_hooks', methods=['POST'])
 def generate_hooks():
-    data = request.json
-    return jsonify({'hooks': ai_call(f"Generate 5 viral YouTube hooks for '{data['topic']}' with tone {data.get('tone','Engaging')}")})
+    data = request.json or {}
+    return jsonify({'hooks': ai_call(f"Generate 5 viral YouTube hooks for '{data.get('topic','')}' with tone {data.get('tone','Engaging')}")})
 
 @app.route('/generate_ideas', methods=['POST'])
 def generate_ideas():
-    niche = request.json.get('niche')
+    data = request.json or {}
+    niche = data.get('niche', '')
     return jsonify({'ideas': ai_call(f"Generate 5 YouTube video ideas for {niche} niche.")})
 
 @app.route('/generate_tags', methods=['POST'])
 def generate_tags():
-    topic = request.json.get('topic')
+    data = request.json or {}
+    topic = data.get('topic', '')
     return jsonify({'tags': ai_call(f"Generate 15 YouTube tags for '{topic}' as comma separated list.")})
 
 @app.route('/generate_hashtags', methods=['POST'])
 def generate_hashtags():
-    topic = request.json.get('topic')
+    data = request.json or {}
+    topic = data.get('topic', '')
     return jsonify({'hashtags': ai_call(f"Generate 10 trending YouTube hashtags for '{topic}'.")})
 
 @app.route('/generate_shorts_script', methods=['POST'])
 def generate_shorts_script():
-    data = request.json
-    return jsonify({'script': ai_call(f"Write a 60-second YouTube Shorts script for '{data['topic']}' in {data.get('style','Fast-paced')} style.")})
+    data = request.json or {}
+    return jsonify({'script': ai_call(f"Write a 60-second YouTube Shorts script for '{data.get('topic','')}' in {data.get('style','Fast-paced')} style.")})
 
 @app.route('/generate_comment_reply', methods=['POST'])
 def generate_comment_reply():
-    data = request.json
-    return jsonify({'replies': ai_call(f"Generate 3 polite replies to this YouTube comment: '{data['comment']}' with tone {data['tone']}")})
+    data = request.json or {}
+    return jsonify({'replies': ai_call(f"Generate 3 polite replies to this YouTube comment: '{data.get('comment','')}' with tone {data.get('tone','Professional')}")})
 
 @app.route('/generate_channel_name', methods=['POST'])
 def generate_channel_name():
-    niche = request.json.get('niche')
+    data = request.json or {}
+    niche = data.get('niche', '')
     return jsonify({'names': ai_call(f"Generate 10 catchy YouTube channel names for {niche} niche.")})
 
 @app.route('/analyze_competitor', methods=['POST'])
 def analyze_competitor():
-    data = request.json
-    return jsonify({'analysis': ai_call(f"Analyze the YouTube competitor channel '{data['channel']}' in niche '{data['niche']}'. Give strengths and content tips.")})
+    data = request.json or {}
+    return jsonify({'analysis': ai_call(f"Analyze the YouTube competitor channel '{data.get('channel','')}' in niche '{data.get('niche','')}'. Give strengths and content tips.")})
 
 @app.route('/generate_trending', methods=['POST'])
 def generate_trending():
-    niche = request.json.get('niche')
+    data = request.json or {}
+    niche = data.get('niche', '')
     return jsonify({'trends': ai_call(f"What are the top 5 trending topics on YouTube right now for '{niche}' niche?")})
 
 @app.route('/generate_calendar', methods=['POST'])
 def generate_calendar():
-    data = request.json
-    return jsonify({'calendar': ai_call(f"Create a 2-week YouTube content calendar for '{data['niche']}' niche with frequency '{data['frequency']}'.")})
+    data = request.json or {}
+    return jsonify({'calendar': ai_call(f"Create a 2-week YouTube content calendar for '{data.get('niche','')}' niche with frequency '{data.get('frequency','2 times a week')}'.")})
 
 @app.route('/check_seo_score', methods=['POST'])
 def check_seo_score():
-    data = request.json
-    prompt = f"Analyze YouTube SEO for Title: {data['title']}, Desc: {data.get('description','')}, Tags: {data.get('tags','')}. Give a score out of 100 and tips."
+    data = request.json or {}
+    prompt = f"Analyze YouTube SEO for Title: {data.get('title','')}, Desc: {data.get('description','')}, Tags: {data.get('tags','')}. Give a score out of 100 and tips."
     return jsonify({'seo_result': ai_call(prompt)})
 
 @app.route('/optimize_video_length', methods=['POST'])
 def optimize_video_length():
-    data = request.json
-    return jsonify({'optimization': ai_call(f"Suggest the ideal YouTube video length for topic '{data['topic']}' in '{data['niche']}' niche to maximize retention.")})
+    data = request.json or {}
+    return jsonify({'optimization': ai_call(f"Suggest the ideal YouTube video length for topic '{data.get('topic','')}' in '{data.get('niche','')}' niche to maximize retention.")})
 
 @app.route('/generate_sponsorship_email', methods=['POST'])
 def generate_sponsorship_email():
-    data = request.json
-    return jsonify({'email': ai_call(f"Write a professional sponsorship pitch email to '{data['brand_name']}' for my YouTube channel in '{data['niche']}' niche.")})
+    data = request.json or {}
+    return jsonify({'email': ai_call(f"Write a professional sponsorship pitch email to '{data.get('brand_name','')}' for my YouTube channel in '{data.get('niche','')}' niche.")})
 
 @app.route('/analyze_engagement', methods=['POST'])
 def analyze_engagement():
-    d = request.json
-    prompt = f"Calculate engagement for a video with {d['views']} views, {d['likes']} likes, {d['comments']} comments, {d['subscribers']} subs. Is it good? Give growth tips."
+    d = request.json or {}
+    prompt = f"Calculate engagement for a video with {d.get('views',0)} views, {d.get('likes',0)} likes, {d.get('comments',0)} comments, {d.get('subscribers',0)} subs. Is it good? Give growth tips."
     return jsonify({'analysis': ai_call(prompt)})
 
 @app.route('/analyze_thumbnail', methods=['POST'])
 def analyze_thumbnail():
     try:
-        image_data = request.json.get('image')
+        data = request.json or {}
+        image_data = data.get('image')
+        if not image_data:
+            return jsonify({'error': 'No image provided'}), 400
         header, base64_str = image_data.split(',', 1)
         mime_type = header.split(':')[1].split(';')[0]
         image_bytes = base64.b64decode(base64_str)
