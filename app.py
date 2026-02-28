@@ -141,8 +141,11 @@ def contact():
                 msg['From'] = sender_email
                 msg['To'] = receiver_email
                 
-                server = smtplib.SMTP_SSL('smtppro.zoho.in', 465) # standard zoho or zoho.in, usually smtp.zoho.com for .com. Let's use smtp.zoho.com as standard
-                server = smtplib.SMTP_SSL('smtp.zoho.com', 465)
+                try:
+                    server = smtplib.SMTP_SSL('smtp.zoho.in', 465, timeout=10)
+                except Exception:
+                    server = smtplib.SMTP_SSL('smtp.zoho.com', 465, timeout=10)
+                
                 server.login(sender_email, sender_password)
                 server.sendmail(sender_email, [receiver_email], msg.as_string())
                 server.quit()
