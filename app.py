@@ -112,9 +112,6 @@ def sponsorship_email_generator_page(): return render_template('sponsorship-emai
 @app.route('/about')
 def about(): return render_template('about.html')
 
-@app.route('/blog')
-def blog_page(): return render_template('blog.html')
-
 @app.route('/privacy')
 def privacy(): 
     # Check karein ki file ka naam 'privacy.html' hi hai templates folder mein
@@ -169,45 +166,6 @@ def blog_post(slug):
     if not post:
         return "Blog post not found.", 404
     return render_template('blog_post.html', post=post, slug=slug)
-
-@app.route('/terms')
-def terms(): return render_template('terms.html')
-
-@app.route('/comment-reply-generator')
-def comment_reply_generator_page(): return render_template('comment-reply-generator.html')
-
-@app.route('/competitor-analyzer')
-def competitor_analyzer_page(): return render_template('competitor-analyzer.html')
-
-@app.route('/content-calendar')
-def content_calendar_page(): return render_template('content-calendar.html')
-
-@app.route('/engagement-analyzer')
-def engagement_analyzer_page(): return render_template('engagement-analyzer.html')
-
-@app.route('/hashtag-generator')
-def hashtag_generator_page(): return render_template('hashtag-generator.html')
-
-@app.route('/revenue-calculator')
-def revenue_calculator_page(): return render_template('revenue-calculator.html')
-
-@app.route('/seo-score-checker')
-def seo_score_checker_page(): return render_template('seo-score-checker.html')
-
-@app.route('/shorts-script-writer')
-def shorts_script_writer_page(): return render_template('shorts-script-writer.html')
-
-@app.route('/sponsorship-email-generator')
-def sponsorship_email_generator_page(): return render_template('sponsorship-email-generator.html')
-
-@app.route('/thumbnail-downloader')
-def thumbnail_downloader_page(): return render_template('thumbnail-downloader.html')
-
-@app.route('/trending-topics')
-def trending_topics_page(): return render_template('trending-topics.html')
-
-@app.route('/video-length-optimizer')
-def video_length_optimizer_page(): return render_template('video-length-optimizer.html')
 
 
 @app.route('/robots.txt')
